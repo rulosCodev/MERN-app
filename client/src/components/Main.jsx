@@ -21,23 +21,7 @@ const Main = () => {
   return (
     <div className='main'>
       <SurgeriesList />
-      <Router>
-        <Target
-          path='/'
-          view={view}
-          onClick={handleClick}
-        />
-        <TargetIntra
-          path='/intra'
-          view={view}
-          onClick={handleClick}
-        />
-        <TargetPost
-          path='/post'
-          view={view}
-          onClick={handleClick}
-        />
-      </Router>
+      
     </div>
   );
 };

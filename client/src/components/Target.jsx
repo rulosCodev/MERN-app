@@ -5,7 +5,7 @@ import Rx1 from '../assets/static/Rx1.png';
 import Rx2 from '../assets/static/Rx2.jpg';
 import Rx3 from '../assets/static/Rx3.jpg';
 
-const Target = ({diagnosis}) => {
+const Target = ({diagnosis, onDelete}) => {
 
   return (
     <div className='target'>
@@ -22,6 +22,7 @@ const Target = ({diagnosis}) => {
         {diagnosis}
         </p>
       </div>
+      <button type="button" onClick={onDelete}>Delete</button>
 
     </div>
   );

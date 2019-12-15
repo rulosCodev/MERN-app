@@ -18,6 +18,12 @@ const SurgeriesList = ()=>{
       [type]: [...state.items, { id: uuid(), name: item}]
     })
   }
+  const handleDelete = (id)=> {
+    setState({
+      ...state,
+      items: [...state.items.filter(item => item.id !== id).splice(0, 1)]
+    });
+  }
 
   const items = state.items;
 
@@ -38,7 +44,11 @@ const SurgeriesList = ()=>{
       <div className="list-items">
         {items.map(({id, name})=>{
           return(
-          <Target key={id} diagnosis={name} />
+          <Target 
+          key={id} 
+          diagnosis={name}
+          onDelete={handleDelete} 
+          />
           )
         })}
       </div>
