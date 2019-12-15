@@ -1,0 +1,17 @@
+$main-color: #313131;
+$second-color: #80cbe1;
+$clair-color: #fafafa;
+$blackground: #a6e9f5;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
+}
+body {
+  background: #e7eaf1;
+  height: 100vh;
+}
+@mixin border {
+  border: red solid 2px;
+}
