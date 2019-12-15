@@ -12,6 +12,9 @@ body {
   background: #e7eaf1;
   height: 100vh;
 }
+.border {
+  border: red solid 2px;
+}
 @mixin border {
   border: red solid 2px;
 }

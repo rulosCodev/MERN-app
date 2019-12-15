@@ -6,6 +6,8 @@ import Target from './Target';
 import TargetIntra from './TargetIntra';
 import TargetPost from './TargetPost';
 
+import SurgeriesList from './SurgeriesList';
+
 const Main = () => {
   const [view, setView] = useState(false);
   const handleClick = () => {
@@ -18,10 +20,7 @@ const Main = () => {
 
   return (
     <div className='main'>
-      <button className='add' type='button'>
-        Añadir
-        <i className='fas fa-plus-circle' />
-      </button>
+      <SurgeriesList />
       <Router>
         <Target
           path='/'

@@ -7,12 +7,9 @@
   background: #f4f6f5;
   box-shadow: 0px 7px 5px -4px rgba(5, 5, 9, 0.445);
   display: grid;
-  grid-template: auto auto auto auto/ 70% 25% 5% ;
+  grid-template: auto/ 70% 25%;
   grid-template-areas:
-      "userInfo date goNext"
-      "diagnosis date goNext"
-      "details details goNext"
-      "viewMore viewMore goNext";
+      "info date ";
   position: relative;
   border-radius: 2em;
   overflow-x: hidden;
