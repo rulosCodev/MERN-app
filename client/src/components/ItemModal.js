@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { addItem, deleteItem } from '../../actions/itemActions';
+import uuid from 'uuid';
 
 import {
   Button,
@@ -14,18 +15,39 @@ import {
   Input
 } from 'reactstrap';
 
-const ItemModal = () => {
+const ItemModal = (props) => {
   const[state, setState] = useState({
     modal: false,
     name:''
   });
 
-  const toggle = () => {
-    setState({
-      ...state,
-      modal: !state.modal
-    })
+const handleChange = (event) => {
+  setState({
+    ...state,
+    [event.target.name]: event.target.value
+  })
+}
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  const newItem = {
+    id: uuid(),
+    name: state.name
   }
+
+  //add item via addItem action
+  props.addItem(newItem);
+  // Close modal
+  toggle();
+}
+
+const toggle = () => {
+  setState({
+    ...state,
+    modal: !state.modal
+  })
+}
 
   return(
     <div>
@@ -41,19 +63,35 @@ const ItemModal = () => {
     >
       <ModalHeader toggle={toggle}>Add to Items</ModalHeader>
       <ModalBody>
-        <FormGroup>
-          <Input 
-            type="text" 
-            name="name"
-            placeholder="add item"
-          />
-        </FormGroup>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label for="item">Item</Label>
+            <Input 
+              type="text" 
+              name="name"
+              id="item"
+              placeholder="add item"
+              onChange={handleChange}
+            />
+            <Button
+              color="dark"
+              style={{marginTop: '2rem'}}
+              block
+            >
+              Add Item
+            </Button>
+          </FormGroup>
+        </Form>
+        
       </ModalBody>
     </Modal>
     </div>
   )
 }
 
-export default ItemModal;
 
+const mapDispatchToProps = {
+  addItem,
+};
+export default connect(null, mapDispatchToProps) (ItemModal);
 

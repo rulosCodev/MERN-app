@@ -23,22 +23,6 @@ const SurgeriesList = (props)=>{
   const handleDeleteItem = itemId => {
     props.deleteItem(itemId);
   }
-  
-  
-  const handleItems = (item, type) => {
-    setState({
-      ...state,
-      [type]: [...state.items, { id: uuid(), name: item}]
-    })
-  }
-  const handleDelete = (id)=> {
-    setState({
-      ...state,
-      items: [...state.items.filter(item => item.id !== id).splice(0, 1)]
-    });
-  }
-
-
 
   return(
     <div className="container">
