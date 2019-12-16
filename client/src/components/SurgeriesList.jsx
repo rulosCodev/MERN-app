@@ -1,17 +1,14 @@
 import React, {useState} from 'react'
 
 import Target from './Target';
-
-
+import { connect } from 'react-redux';
+import { getItems } from '../../actions/itemActions';
+import ProTypes from 'prop-types';
 import uuid from 'uuid';
 
-const SurgeriesList = ()=>{
-  const[state, setState] = useState({
-     items: [
-      {id:uuid(), name:'Eggs'},
-      
-    ]}
-  );
+const SurgeriesList = ({items})=>{
+  
+  
   const handleItems = (item, type) => {
     setState({
       ...state,
@@ -25,7 +22,7 @@ const SurgeriesList = ()=>{
     });
   }
 
-  const items = state.items;
+
 
   return(
     <div className="container">
@@ -57,4 +54,11 @@ const SurgeriesList = ()=>{
 
 };
 
-export default SurgeriesList;
+const mapStateToProps = (state) => {
+  return {
+    items: state.item.items,
+    
+  };
+};
+
+export default connect(mapStateToProps, null) (SurgeriesList);
