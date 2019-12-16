@@ -2,11 +2,27 @@ import React, {useState} from 'react'
 
 import Target from './Target';
 import { connect } from 'react-redux';
-import { getItems } from '../../actions/itemActions';
-import ProTypes from 'prop-types';
+
+import { addItem, deleteItem } from '../../actions/itemActions';
+import PropTypes from "prop-types";
+
 import uuid from 'uuid';
 
-const SurgeriesList = ({items})=>{
+const SurgeriesList = (props)=>{
+
+  const { items } = props;
+  const { name } = props;
+
+  const handleAddItem = () => {
+    const name = prompt('what is your name?');
+    props.addItem({
+      name,
+    })
+  }
+  
+  const handleDeleteItem = itemId => {
+    props.deleteItem(itemId);
+  }
   
   
   const handleItems = (item, type) => {
@@ -27,16 +43,7 @@ const SurgeriesList = ({items})=>{
   return(
     <div className="container">
     {console.log(items)}
-      <button 
-      type="button" 
-      onClick={()=>{
-        const name = prompt('Enter item');
-        if(name){
-          handleItems(name,'items')
-        }
-      }}
-      >Add Item
-      </button>
+     
 
       <div className="list-items">
         {items.map(({id, name})=>{
@@ -44,7 +51,7 @@ const SurgeriesList = ({items})=>{
           <Target 
           key={id} 
           diagnosis={name}
-          onDelete={handleDelete} 
+          onDelete={() => handleDeleteItem(id)}
           />
           )
         })}
@@ -54,11 +61,19 @@ const SurgeriesList = ({items})=>{
 
 };
 
+SurgeriesList.propTypes = {
+  name: PropTypes.string,
+};
+
 const mapStateToProps = (state) => {
   return {
     items: state.item.items,
     
   };
 };
+const mapDispatchToProps = {
+  addItem,
+  deleteItem,
+};
 
-export default connect(mapStateToProps, null) (SurgeriesList);
+export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);

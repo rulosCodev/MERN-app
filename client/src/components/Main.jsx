@@ -5,7 +5,8 @@ import '../assets/styles/components/Main.scss';
 import Target from './Target';
 import TargetIntra from './TargetIntra';
 import TargetPost from './TargetPost';
-
+import { Container } from 'reactstrap';
+import ItemModal from './ItemModal';
 import SurgeriesList from './SurgeriesList';
 
 const Main = () => {
@@ -20,7 +21,11 @@ const Main = () => {
 
   return (
     <div className='main'>
-      <SurgeriesList />
+      <Container>
+        <ItemModal />
+        <SurgeriesList /> 
+
+      </Container>
       
     </div>
   );
