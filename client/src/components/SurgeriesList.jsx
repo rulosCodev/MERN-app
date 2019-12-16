@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import Target from './Target';
 import { connect } from 'react-redux';
 
-import { getItems } from '../../actions/itemActions';
+import { getItems, deleteItem } from '../../actions/itemActions';
 import PropTypes from "prop-types";
 
 class SurgeriesList extends React.Component {
@@ -14,19 +14,21 @@ class SurgeriesList extends React.Component {
     this.props.getItems() 
     
   }
+
+  
  
   render() {
     const { items } = this.props.item
     return(
       <div>
       
-      <p>hola</p>
       { items.map(({_id,name})=>{
         return(
 
         <Target 
-        key={_id}
-        diagnosis={name}
+          key={_id}
+          id={_id}
+          diagnosis={name}
         />
         )
       })}
@@ -50,6 +52,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   getItems,
+  deleteItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);

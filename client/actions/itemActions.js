@@ -13,15 +13,30 @@ export const getItems = () => dispatch => {
     );
 }
 
-export const addItem = payload => ({
-  type: ADD_ITEM,
-  payload,
-});
+export const addItem = item => dispatch => {
+  axios
+    .post('http://localhost:4000/item', item)
+    .then(res =>
+       dispatch({
+        type: ADD_ITEM,
+        payload: res.data.body
+       })
+       )
+ 
+};
 
-export const deleteItem = payload => ({
-  type: DELETE_ITEM,
-  payload,
-});
+export const deleteItem = id => dispatch  => {
+  axios
+    .delete(`http://localhost:4000/item/${id}`)
+    .then( res => {
+      dispatch({
+        type: DELETE_ITEM,
+        payload: id
+      })
+    })
+
+  
+};
 
 export const setItemsLoading = () => {
   return {

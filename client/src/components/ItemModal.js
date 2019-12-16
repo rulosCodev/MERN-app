@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { addItem, deleteItem } from '../../actions/itemActions';
-import uuid from 'uuid';
 
 import {
   Button,
@@ -32,7 +31,6 @@ const handleSubmit = (event) => {
   event.preventDefault();
 
   const newItem = {
-    id: uuid(),
     name: state.name
   }
 
