@@ -3,61 +3,53 @@ import React, {useState} from 'react'
 import Target from './Target';
 import { connect } from 'react-redux';
 
-import { addItem, deleteItem } from '../../actions/itemActions';
+import { getItems } from '../../actions/itemActions';
 import PropTypes from "prop-types";
 
-import uuid from 'uuid';
-
-const SurgeriesList = (props)=>{
-
-  const { items } = props;
-  const { name } = props;
-
-  const handleAddItem = () => {
-    const name = prompt('what is your name?');
-    props.addItem({
-      name,
-    })
-  }
+class SurgeriesList extends React.Component {
   
-  const handleDeleteItem = itemId => {
-    props.deleteItem(itemId);
+  
+
+  componentDidMount() {
+    this.props.getItems() 
+    
   }
+ 
+  render() {
+    const { items } = this.props.item
+    return(
+      <div>
+      
+      <p>hola</p>
+      { items.map(({_id,name})=>{
+        return(
 
-  return(
-    <div className="container">
-    {console.log(items)}
-     
-
-      <div className="list-items">
-        {items.map(({id, name})=>{
-          return(
-          <Target 
-          key={id} 
-          diagnosis={name}
-          onDelete={() => handleDeleteItem(id)}
-          />
-          )
-        })}
+        <Target 
+        key={_id}
+        diagnosis={name}
+        />
+        )
+      })}
       </div>
-    </div>
-  )
+    )
 
-};
+  }
+}
+
 
 SurgeriesList.propTypes = {
-  name: PropTypes.string,
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    items: state.item.items,
+    item: state.item
     
   };
 };
 const mapDispatchToProps = {
-  addItem,
-  deleteItem,
+  getItems,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);
