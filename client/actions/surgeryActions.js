@@ -27,6 +27,19 @@ export const getSurgeries = () => dispatch => {
     );
 }
 
+export const deleteSurgery = id => dispatch  => {
+  axios
+    .delete(`http://localhost:4000/surgery/${id}`)
+    .then( res => {
+      dispatch({
+        type: DELETE_ITEM,
+        payload: id
+      })
+    })
+
+  
+};
+
 
 
 export const setSurgeriesLoading = () => {

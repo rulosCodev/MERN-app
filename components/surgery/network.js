@@ -29,6 +29,16 @@ router.post('/', async (req, res)=>{
   }
 });
 
+router.delete('/:id', async(req, res)=>{
+  try {
+    await controller.deleteSurgery(req.params.id);
+    response.success(req, res, `Surgery: ${req.params.id} deleted`, 200);
+  }
+  
+  catch (error) {
+    response.error(req, res, 'Internal Error',500, error);
+  }
+})
 // router.delete('/:id', async(req, res)=>{
 //   try {
 //     await controller.deleteItem(req.params.id);

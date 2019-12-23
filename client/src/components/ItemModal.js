@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addSurgery} from '../../actions/surgeryActions';
+import { addSurgery } from '../../actions/surgeryActions';
 
 import {
   Button,

@@ -6,4 +6,7 @@ export const ITEM_LOADING = 'ITEM_LOADING'
 export const ADD_SURGERY = 'ADD_SURGERY';
 export const GET_SURGERIES = 'GET_SURGERIES'
 export const SURGERIES_LOADING = 'SURGERIES_LOADING'
+export const DELETE_SURGERY = 'DELETE_SURGERY'
+
+
 

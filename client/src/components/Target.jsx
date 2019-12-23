@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/Target.scss';
 import { connect } from 'react-redux';
-import {deleteItem } from '../../actions/itemActions';
+import { deleteSurgery } from '../../actions/surgeryActions';
 import ReactDOM from 'react-dom';
 import Modal from './Modal';
 
@@ -22,7 +22,7 @@ const Target = ({
   }) => {
 
   const handleDelete = (id) => {
-    deleteItem(id)
+    deleteSurgery(id)
   }
   return (
     <div className='target'>
@@ -68,7 +68,7 @@ const Target = ({
       <button
       className="btn_delete"
         type="button" 
-        onClick={onDelete}
+        onClick={onDelete(id)}
       >
       <i class="fas fa-trash-alt"></i>
       
@@ -79,6 +79,6 @@ const Target = ({
 };
 
 const mapDispatchToProps = {
-  deleteItem,
+  deleteSurgery,
 };
 export default connect(null, mapDispatchToProps) (Target);

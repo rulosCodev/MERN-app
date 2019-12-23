@@ -1,4 +1,4 @@
-import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING } from '../actions/types';
+import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING, DELETE_SURGERY} from '../actions/types';
 
 const initialState = {
   surgeries: [],
@@ -19,6 +19,11 @@ export default function(state = initialState, action) {
         surgeries: action.payload,
         loading: false
       };
+    case DELETE_SURGERY:
+    return {
+      ...state,
+      surgeries: state.items.filter(items => items._id !== action.payload)
+    };
    
     case SURGERIES_LOADING:
       return {
