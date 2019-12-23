@@ -5,7 +5,6 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 1em 0;
   background: rgba(255, 255, 255, 0.233);
 }
 .add {
@@ -19,103 +18,4 @@
     background: #7cc073;
     border-radius: 2em;
     outline: none;
-
 }
-// .target {
-//   width: 100%;
-//   margin: 0 auto;
-//   margin-top: 2em;
-//   background: #f4f6f5;
-//   box-shadow: 0px 7px 5px -4px rgba(5, 5, 9, 0.445);
-//   display: grid;
-//   grid-template: auto auto auto auto/ 70% 30% ;
-//   grid-template-areas:
-//       "userInfo date"
-//       "diagnosis date"
-//       "details details"
-//       "viewMore viewMore";
-//   position: relative;
-//   border-radius: 2em;
-//   overflow-x: hidden;
-//   padding: 0em 0em 0em 2em;
-//   &__date {
-//     grid-area: date;
-//     background: inherit;
-//     background: #84d7d9;
-//     padding: 1em;
-//     color: $clair-color;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     font-size: 1.5em;
-//     right: 0;
-//     border-radius: 0 0 0 2em;
-//     box-shadow: 0px 7px 5px -4px rgba(5, 5, 9, 0.445);
-//   }
-//   &__user--info {
-  
-//     grid-area: userInfo;
-//     display: flex;
-//   }
-//   .label {
-//     color: #0b0b09;
-//     font-size: 1.2em;
-//     margin-right: .3em;
-//     letter-spacing: .1em;
-//     color: #27b3b8;
-//     font-weight: 900;
-//   }
-//   .user-info {
-//     padding: 1em 2em 0em 0em;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
-//   &__diagnosis {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-around;
-//   }
-//   .viewMore {
-//     margin-top: 1em;
-//     grid-area: viewMore;
-//     width: 30%;
-//     margin: 0 auto;
-//     margin-top: .5em;
-//     font-size: 1.5em ;
-//     border-radius: 2em 2em 0 0;
-//     outline: none;
-//     border: none;
-//     background: #27b3b83d;
-//     cursor: pointer;
-//     transition:.3s;
-    
-//   }
-//   .viewMore:hover {
-//     background:  #27b3b8ce;
-//   }
-//   .viewMore.hide {
-    
-//     color: rgba(255, 0, 0, 0.561);
-//     background: #27b3b869;
-
-//   }
-//   .btnIcon {
-//     transform: rotate(180deg);
-//   }
-//   .attacheds__gallery {
-//     display: flex;
-//     justify-content: space-around;
-//     img {
-//       max-width: 20%;
-      
-//     }
-//   }
-//   &__details {
-//     grid-area: details;
-//   }
-// }
-// .none {
-//   display: none;
-// }

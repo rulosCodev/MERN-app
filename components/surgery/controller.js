@@ -1,8 +1,6 @@
 const store = require('./store');
 
-function getSurgeries() {
-  return store.list()
-}
+
 
 
 function addSurgery(sex, age, diagnosis, surgery) {
@@ -17,6 +15,10 @@ function addSurgery(sex, age, diagnosis, surgery) {
   };
 
   return store.add(fullSurgery)
+}
+
+function getSurgeries() {
+  return store.list()
 }
 
 // function deleteItem(id) {

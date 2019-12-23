@@ -35,33 +35,43 @@ const Target = ({
 
         
 
-        <p className='label'>Sexo: </p>
-        <p>
-        {sex}
-        </p>
+        <div className="primary--info">
+          <div className="flex sex">
+            <p className='label'>Sexo: </p>
+            <p className="data--info">
+            {sex}
+            </p>
+          </div>
+          
+          <div className="flex">
+            <p className='label'>Edad: </p>
+            <p className="data--info">
+            {`${age} años`}
+            </p>
+          </div>
+        </div>
 
-        <p className='label'>Edad: </p>
-        <p>
-        {`${age} años`}
-        </p>
-
-        <p className='label'>Diagnostigo: </p>
-        <p>
-        {diagnosis}
-        </p>
-
-        <p className='label'>Procedimiento: </p>
-        <p>
-        {surgery}
-        </p>
+        <div className="secondary--info">
+          <p className='label'>Diagnostigo: </p>
+          <p>
+          {diagnosis}
+          </p>
+          
+          <p className='label'>Procedimiento: </p>
+          <p>
+          {surgery}
+          </p>
+        </div>
         
       </div>
-      <button 
+      <button
+      className="btn_delete"
         type="button" 
         onClick={()=>{
           handleDelete(id)
         }}
-      >Delete
+      >
+      <i class="fas fa-trash-alt"></i>
       </button>
 
     </div>

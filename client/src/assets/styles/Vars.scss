@@ -18,3 +18,12 @@ body {
 @mixin border {
   border: red solid 2px;
 }
+
+.flex {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
