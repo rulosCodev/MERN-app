@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
-import { addItem, deleteItem } from '../../actions/itemActions';
+import { addSurgery} from '../../actions/surgeryActions';
 
 import {
   Button,
@@ -17,7 +17,10 @@ import {
 const ItemModal = (props) => {
   const[state, setState] = useState({
     modal: false,
-    name:''
+    sex:'',
+    age:'',
+    diagnosis: '',
+    surgery: ''
   });
 
 const handleChange = (event) => {
@@ -30,12 +33,15 @@ const handleChange = (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
 
-  const newItem = {
-    name: state.name
+  const newSurgery = {
+    sex: state.sex,
+    age: state.age,
+    diagnosis: state.diagnosis,
+    surgery: state.surgery
   }
 
   //add item via addItem action
-  props.addItem(newItem);
+  props.addSurgery(newSurgery);
   // Close modal
   toggle();
 }
@@ -59,16 +65,40 @@ const toggle = () => {
       isOpen={state.modal}
       toggle={toggle}
     >
-      <ModalHeader toggle={toggle}>Add to Items</ModalHeader>
+      <ModalHeader toggle={toggle}>Agregar cirugía</ModalHeader>
       <ModalBody>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label for="item">Item</Label>
+            <Label for="sex">Sexo</Label>
             <Input 
               type="text" 
-              name="name"
-              id="item"
-              placeholder="add item"
+              name="sex"
+              id="sex"
+              placeholder="sexo del paciente"
+              onChange={handleChange}
+            />
+            <Label for="age">Edad</Label>
+            <Input 
+              type="number" 
+              name="age"
+              id="age"
+              placeholder="edad del paciente"
+              onChange={handleChange}
+            />
+            <Label for="diagnosis">Diagnostico</Label>
+            <Input 
+              type="text" 
+              name="diagnosis"
+              id="diagnosis"
+              placeholder="diagnostico del paciente"
+              onChange={handleChange}
+            />
+            <Label for="surgery">Procedimiento</Label>
+            <Input 
+              type="text" 
+              name="surgery"
+              id="surgery"
+              placeholder="procedimiento a realizar"
               onChange={handleChange}
             />
             <Button
@@ -89,7 +119,7 @@ const toggle = () => {
 
 
 const mapDispatchToProps = {
-  addItem,
+  addSurgery,
 };
 export default connect(null, mapDispatchToProps) (ItemModal);
 

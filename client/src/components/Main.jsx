@@ -23,7 +23,7 @@ const Main = () => {
     <div className='main'>
       <Container>
         <ItemModal />
-        <SurgeriesList /> 
+        {/* <SurgeriesList />  */}
 
       </Container>
       
