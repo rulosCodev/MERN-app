@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import '../assets/styles/components/Target.scss';
 import { connect } from 'react-redux';
 import {deleteItem } from '../../actions/itemActions';
-
+import ReactDOM from 'react-dom';
+import Modal from './Modal';
 
 import { Link } from '@reach/router';
 import Rx1 from '../assets/static/Rx1.png';
@@ -67,13 +68,12 @@ const Target = ({
       <button
       className="btn_delete"
         type="button" 
-        onClick={()=>{
-          handleDelete(id)
-        }}
+        onClick={onDelete}
       >
       <i class="fas fa-trash-alt"></i>
+      
       </button>
-
+      
     </div>
   );
 };

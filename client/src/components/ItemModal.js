@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { connect } from 'react-redux';
 import { addSurgery} from '../../actions/surgeryActions';
 
@@ -106,6 +105,7 @@ const toggle = () => {
               style={{marginTop: '2rem'}}
               block
             >
+            {ReactDOM.createPortal(<h1>realmente no estoy aquí</h1>,document.getElementById('modal'))}
               Add Item
             </Button>
           </FormGroup>

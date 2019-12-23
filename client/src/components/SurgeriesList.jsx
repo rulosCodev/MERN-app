@@ -5,17 +5,31 @@ import { connect } from 'react-redux';
 
 import { getSurgeries } from '../../actions/surgeryActions';
 import PropTypes from "prop-types";
+import DeleteSurgeryModal from './DeleteSurgeryModal';
 
 import '../assets/styles/components/SurgeriesList.scss';
 
 class SurgeriesList extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { modalIsOpen: false }
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+ 
 
   componentDidMount() {
     this.props.getSurgeries() 
-    
+   
   }
 
-  
+  handleCloseModal(e) {
+    this.setState({ modalIsOpen: false})
+  }
+  handleOpenModal(e){
+    this.setState({ modalIsOpen: true})
+  }
  
   render() {
     const surgeries = this.props.surgeries
@@ -33,9 +47,11 @@ class SurgeriesList extends React.Component {
           diagnosis={diagnosis}
           surgery={surgery}
           date={date}
+          onDelete={this.handleOpenModal}
         />
         )
       })}
+      <DeleteSurgeryModal onClose={this.handleCloseModal} isOpen={this.state.modalIsOpen} />
       </div>
     )
 
