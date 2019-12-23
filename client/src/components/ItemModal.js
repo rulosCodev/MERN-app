@@ -11,7 +11,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
 } from 'reactstrap';
 
 const ItemModal = (props) => {
@@ -82,7 +82,7 @@ const toggle = () => {
               type="number" 
               name="age"
               id="age"
-              placeholder="edad del paciente"
+              placeholder="numero de años"
               onChange={handleChange}
             />
             <Label for="diagnosis">Diagnostico</Label>

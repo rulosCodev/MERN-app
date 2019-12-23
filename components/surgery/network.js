@@ -8,15 +8,15 @@ const router = express.Router();
 // @desc Get All Items
 // @access Public
 
-// router.get('/', async (req, res)=>{
-//   try {
-//     const itemsList = await controller.getItems();
-//     response.success(req, res, itemsList, 200)
-//   }
-//   catch(err) {
-//     response.error(req,res, 'Internal error', err)
-//   }
-// })
+router.get('/', async (req, res)=>{
+  try {
+    const surgeriesList = await controller.getSurgeries();
+    response.success(req, res, surgeriesList, 200)
+  }
+  catch(err) {
+    response.error(req,res, 'Internal error', err)
+  }
+})
 
 router.post('/', async (req, res)=>{
   const {sex, age, diagnosis, surgery} = req.body;

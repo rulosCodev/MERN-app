@@ -3,32 +3,36 @@ import React, {useState} from 'react'
 import Target from './Target';
 import { connect } from 'react-redux';
 
-import { getItems, deleteItem } from '../../actions/itemActions';
+import { getSurgeries } from '../../actions/surgeryActions';
 import PropTypes from "prop-types";
 
+import '../assets/styles/components/SurgeriesList.scss';
+
 class SurgeriesList extends React.Component {
-  
-  
 
   componentDidMount() {
-    this.props.getItems() 
+    this.props.getSurgeries() 
     
   }
 
   
  
   render() {
-    const { items } = this.props.item
+    const surgeries = this.props.surgeries
+    // console.log(this.props.surgeries)
     return(
-      <div>
-      
-      { items.map(({_id,name})=>{
+      <div className="surgeriesList">
+      { surgeries.map(({_id, sex, age, diagnosis, surgery, date})=>{
         return(
 
         <Target 
           key={_id}
           id={_id}
-          diagnosis={name}
+          sex={sex}
+          age={age}
+          diagnosis={diagnosis}
+          surgery={surgery}
+          date={date}
         />
         )
       })}
@@ -40,19 +44,18 @@ class SurgeriesList extends React.Component {
 
 
 SurgeriesList.propTypes = {
-  getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired,
+  getSurgeries: PropTypes.func.isRequired,
+  // surgeries: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    item: state.item
+    surgeries: state.surgery.surgeries
     
   };
 };
 const mapDispatchToProps = {
-  getItems,
-  deleteItem,
+  getSurgeries,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);

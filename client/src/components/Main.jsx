@@ -22,8 +22,8 @@ const Main = () => {
   return (
     <div className='main'>
       <Container>
-        <ItemModal />
-        {/* <SurgeriesList />  */}
+        {/* <ItemModal /> */}
+        <SurgeriesList /> 
 
       </Container>
       

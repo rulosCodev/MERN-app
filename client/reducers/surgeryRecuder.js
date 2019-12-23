@@ -1,4 +1,4 @@
-import { ADD_SURGERY } from '../actions/types';
+import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING } from '../actions/types';
 
 const initialState = {
   surgeries: [],
@@ -13,12 +13,18 @@ export default function(state = initialState, action) {
       ...state,
       surgeries: [action.payload,...state.surgeries]
     };
+    case GET_SURGERIES:
+      return {
+        ...state,
+        surgeries: action.payload,
+        loading: false
+      };
    
-  //   case ITEMS_LOADING:
-  //     return {
-  //       ...state,
-  //       loading: true
-  //     };
+    case SURGERIES_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
       default:
         return state;
   }

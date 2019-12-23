@@ -1,8 +1,8 @@
 const store = require('./store');
 
-// function getItems() {
-//   return store.list()
-// }
+function getSurgeries() {
+  return store.list()
+}
 
 
 function addSurgery(sex, age, diagnosis, surgery) {
@@ -36,7 +36,7 @@ function addSurgery(sex, age, diagnosis, surgery) {
 // }
 
 module.exports = {
-  // getItems,
   addSurgery,
+  getSurgeries,
   // deleteItem,
 }

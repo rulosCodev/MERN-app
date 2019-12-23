@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_SURGERY } from './types';
+import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING } from './types';
 
 
 
@@ -15,10 +15,22 @@ export const addSurgery = surgery => dispatch => {
  
 };
 
+export const getSurgeries = () => dispatch => {
+  dispatch(setSurgeriesLoading());
+  axios
+    .get('http://localhost:4000/surgery')
+    .then(res => 
+      dispatch({
+        type: GET_SURGERIES,
+        payload: res.data.body
+      })
+    );
+}
 
 
-// export const setItemsLoading = () => {
-//   return {
-//     type: ITEM_LOADING,
-//   }
-// };
+
+export const setSurgeriesLoading = () => {
+  return {
+    type: SURGERIES_LOADING,
+  }
+};
