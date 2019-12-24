@@ -8,19 +8,21 @@ import PropTypes from "prop-types";
 import DeleteSurgeryModal from './DeleteSurgeryModal';
 
 import '../assets/styles/components/SurgeriesList.scss';
+import AddSurgeryModal from './AddSurgeryModal';
 
 class SurgeriesList extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false,
+      deleteModalIsOpen: false,
+      addModalIsOpen: false,
       deleteTargetId: ''
     }
     this.handleToggleModal = this.handleToggleModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
-
+    this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
   }
  
 
@@ -30,10 +32,10 @@ class SurgeriesList extends React.Component {
   }
 
   handleCloseModal(e) {
-    this.setState({ modalIsOpen: false})
+    this.setState({ deleteModalIsOpen: false})
   }
   handleToggleModal(id){
-    this.setState({ modalIsOpen: !this.state.modalIsOpen})
+    this.setState({ deleteModalIsOpen: !this.state.deleteModalIsOpen})
     if(this.state.deleteTargetId.length === 0) {
       this.setState({
         deleteTargetId: id
@@ -44,6 +46,11 @@ class SurgeriesList extends React.Component {
       })
     }
 
+  }
+  handleToggleAddModal() {
+    this.setState({
+      addModalIsOpen: !this.state.addModalIsOpen,
+    })
   }
 
   handlleDeleteSurgery(id) {
@@ -56,6 +63,7 @@ class SurgeriesList extends React.Component {
     // console.log(this.props.surgeries)
     return(
       <div className="surgeriesList">
+      <button onClick={this.handleToggleAddModal}>Nueva cirugía</button>
       { surgeries.map(({_id, sex, age, diagnosis, surgery, date})=>{
         return(
 
@@ -71,12 +79,17 @@ class SurgeriesList extends React.Component {
         />
         )
       })}
+      <AddSurgeryModal 
+        onClose={this.handleToggleAddModal}
+        isOpen={this.state.addModalIsOpen}
+
+      />
       <DeleteSurgeryModal  
         surgeryId={this.state.deleteTargetId} 
         onClose={this.handleToggleModal}
         onDelete={this.handlleDeleteSurgery} 
         onToggle={this.handleToggleModal} 
-        isOpen={this.state.modalIsOpen}
+        isOpen={this.state.deleteModalIsOpen}
       />
       </div>
     )
