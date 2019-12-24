@@ -13,7 +13,9 @@ function Modal (props) {
       <div className="Modal__container">
         <button
          className="Modal__close"
-         onClick={onClose}
+         onClick={()=>{
+           onClose()
+         }}
         >
           <i class="fas fa-times"></i>
         </button>

@@ -73,6 +73,7 @@ class SurgeriesList extends React.Component {
       })}
       <DeleteSurgeryModal  
         surgeryId={this.state.deleteTargetId} 
+        onClose={this.handleToggleModal}
         onDelete={this.handlleDeleteSurgery} 
         onToggle={this.handleToggleModal} 
         isOpen={this.state.modalIsOpen}
