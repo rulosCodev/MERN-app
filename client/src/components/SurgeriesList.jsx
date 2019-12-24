@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import Target from './Target';
 import { connect } from 'react-redux';
 
-import { getSurgeries } from '../../actions/surgeryActions';
+import { getSurgeries, deleteSurgery } from '../../actions/surgeryActions';
 import PropTypes from "prop-types";
 import DeleteSurgeryModal from './DeleteSurgeryModal';
 
@@ -16,6 +16,8 @@ class SurgeriesList extends React.Component {
     this.state = { modalIsOpen: false }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
+
   }
  
 
@@ -29,6 +31,10 @@ class SurgeriesList extends React.Component {
   }
   handleOpenModal(e){
     this.setState({ modalIsOpen: true})
+  }
+
+  handlleDeleteSurgery(id) {
+    console.log(id)
   }
  
   render() {
@@ -51,7 +57,7 @@ class SurgeriesList extends React.Component {
         />
         )
       })}
-      <DeleteSurgeryModal onClose={this.handleCloseModal} isOpen={this.state.modalIsOpen} />
+      <DeleteSurgeryModal onDelete={this.handlleDeleteSurgery} onClose={this.handleCloseModal} isOpen={this.state.modalIsOpen} />
       </div>
     )
 
@@ -72,6 +78,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   getSurgeries,
+  deleteSurgery,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);

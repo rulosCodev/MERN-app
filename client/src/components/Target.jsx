@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/Target.scss';
-import { connect } from 'react-redux';
-import { deleteSurgery } from '../../actions/surgeryActions';
-import ReactDOM from 'react-dom';
-import Modal from './Modal';
 
-import { Link } from '@reach/router';
-import Rx1 from '../assets/static/Rx1.png';
-import Rx2 from '../assets/static/Rx2.jpg';
-import Rx3 from '../assets/static/Rx3.jpg';
 
 const Target = ({
    id,
@@ -21,9 +13,7 @@ const Target = ({
    deleteItem
   }) => {
 
-  const handleDelete = (id) => {
-    deleteSurgery(id)
-  }
+ 
   return (
     <div className='target'>
 
@@ -66,11 +56,14 @@ const Target = ({
         
       </div>
       <button
-      className="btn_delete"
+        className="btn_delete"
         type="button" 
-        onClick={onDelete(id)}
+        onClick={()=>{
+          onDelete(id)
+          }
+        }
       >
-      <i class="fas fa-trash-alt"></i>
+      <i className="fas fa-trash-alt"></i>
       
       </button>
       
@@ -78,7 +71,5 @@ const Target = ({
   );
 };
 
-const mapDispatchToProps = {
-  deleteSurgery,
-};
-export default connect(null, mapDispatchToProps) (Target);
+
+export default Target;

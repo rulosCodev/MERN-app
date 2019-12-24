@@ -12,7 +12,7 @@ function DeleteSurgeryModal (props) {
       <p>Estas apunto de eliminar esta cirugía</p>
 
       <div>
-        <button className="btn btn-danger">Delete</button>
+        <button onClick={props.onDelete} className="btn btn-danger">Delete</button>
         <button onClick={props.onClose} className="btn btn-primary">Cancel</button>
       </div>
     </div>
