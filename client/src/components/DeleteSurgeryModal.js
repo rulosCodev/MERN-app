@@ -5,6 +5,7 @@ import Modal from './Modal';
 
 
 function DeleteSurgeryModal (props) {
+ const { onDelete, onClose, surgeryId, onToggle, isOpen} = props;
  return(
    <Modal isOpen={props.isOpen} onClose={props.onClose}>
     <div>
@@ -12,8 +13,17 @@ function DeleteSurgeryModal (props) {
       <p>Estas apunto de eliminar esta cirugía</p>
 
       <div>
-        <button onClick={props.onDelete} className="btn btn-danger">Delete</button>
-        <button onClick={props.onClose} className="btn btn-primary">Cancel</button>
+        <button onClick={()=> {
+          onDelete(surgeryId)
+          }}
+          className="btn btn-danger"
+         >Delete
+         </button>
+        <button 
+          onClick={()=>{onToggle(surgeryId)}} 
+          className="btn btn-primary"
+        >Cancel
+        </button>
       </div>
     </div>
    </Modal>

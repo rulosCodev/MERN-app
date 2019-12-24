@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
     case DELETE_SURGERY:
     return {
       ...state,
-      surgeries: state.items.filter(items => items._id !== action.payload)
+      surgeries: state.surgeries.filter(surgeries => surgeries._id !== action.payload)
     };
    
     case SURGERIES_LOADING:

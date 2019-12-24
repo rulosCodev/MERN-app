@@ -13,8 +13,11 @@ class SurgeriesList extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state = { modalIsOpen: false }
-    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.state = {
+      modalIsOpen: false,
+      deleteTargetId: ''
+    }
+    this.handleToggleModal = this.handleToggleModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
 
@@ -29,12 +32,23 @@ class SurgeriesList extends React.Component {
   handleCloseModal(e) {
     this.setState({ modalIsOpen: false})
   }
-  handleOpenModal(e){
-    this.setState({ modalIsOpen: true})
+  handleToggleModal(id){
+    this.setState({ modalIsOpen: !this.state.modalIsOpen})
+    if(this.state.deleteTargetId.length === 0) {
+      this.setState({
+        deleteTargetId: id
+      })
+    } else {
+      this.setState({
+        deleteTargetId: ''
+      })
+    }
+
   }
 
   handlleDeleteSurgery(id) {
-    console.log(id)
+    this.handleToggleModal(id)
+    this.props.deleteSurgery(id)
   }
  
   render() {
@@ -53,11 +67,16 @@ class SurgeriesList extends React.Component {
           diagnosis={diagnosis}
           surgery={surgery}
           date={date}
-          onDelete={this.handleOpenModal}
+          onDelete={this.handleToggleModal}
         />
         )
       })}
-      <DeleteSurgeryModal onDelete={this.handlleDeleteSurgery} onClose={this.handleCloseModal} isOpen={this.state.modalIsOpen} />
+      <DeleteSurgeryModal  
+        surgeryId={this.state.deleteTargetId} 
+        onDelete={this.handlleDeleteSurgery} 
+        onToggle={this.handleToggleModal} 
+        isOpen={this.state.modalIsOpen}
+      />
       </div>
     )
 

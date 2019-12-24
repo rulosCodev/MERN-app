@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING } from './types';
+import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING, DELETE_SURGERY } from './types';
 
 
 
@@ -32,7 +32,7 @@ export const deleteSurgery = id => dispatch  => {
     .delete(`http://localhost:4000/surgery/${id}`)
     .then( res => {
       dispatch({
-        type: DELETE_ITEM,
+        type: DELETE_SURGERY,
         payload: id
       })
     })
