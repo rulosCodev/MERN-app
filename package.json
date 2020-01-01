@@ -4,7 +4,7 @@
   "description": "This app going be a full stack bulding.",
   "main": "server.js",
   "engines": {
-    "node": "10.x"
+    "node": "12.13.0"
   },
   "scripts": {
     "client-install": "npm install --prefix client",
