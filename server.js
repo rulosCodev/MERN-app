@@ -4,7 +4,7 @@ const router = require('./network/routes');
 const bodyParser = require('body-parser');
 const { config } = require('./config');
 const db = require('./db');
-
+const path = require('path');
 const app = express();
 
 // bodyparser Middleware
@@ -21,6 +21,16 @@ db(config.dbUri);
 // Routes
 router(app);
 
+//Serve static assets if in production
+
+if(process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static('client/dist'));
+
+  app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+  } )
+}
 
   const port = config.port;
 app.listen(port, ()=>{
