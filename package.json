@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "This app going be a full stack bulding.",
   "main": "server.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
