@@ -5,7 +5,7 @@ import { ADD_SURGERY, GET_SURGERIES, SURGERIES_LOADING, DELETE_SURGERY } from '.
 
 export const addSurgery = surgery => dispatch => {
   axios
-    .post('http://localhost:4000/surgery', surgery)
+    .post('https://neurotraking.now.sh/surgery', surgery)
     .then(res =>
        dispatch({
         type: ADD_SURGERY,
@@ -18,7 +18,7 @@ export const addSurgery = surgery => dispatch => {
 export const getSurgeries = () => dispatch => {
   dispatch(setSurgeriesLoading());
   axios
-    .get('http://localhost:4000/surgery')
+    .get('https://neurotraking.now.sh/surgery')
     .then(res => 
       dispatch({
         type: GET_SURGERIES,
@@ -29,7 +29,7 @@ export const getSurgeries = () => dispatch => {
 
 export const deleteSurgery = id => dispatch  => {
   axios
-    .delete(`http://localhost:4000/surgery/${id}`)
+    .delete(`https://neurotraking.now.sh/surgery/${id}`)
     .then( res => {
       dispatch({
         type: DELETE_SURGERY,
