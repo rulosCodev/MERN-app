@@ -10,7 +10,6 @@ const Target = ({
    surgery,
    date,
    onDelete,
-   deleteItem
   }) => {
 
  
@@ -58,10 +57,10 @@ const Target = ({
       <button
         className="btn_delete"
         type="button" 
-        // onClick={()=>{
-        //   onDelete(id)
-        //   }
-        // }
+        onClick={()=>{
+          onDelete(id)
+          }
+        }
       >
       <i className="fas fa-trash-alt"></i>
       

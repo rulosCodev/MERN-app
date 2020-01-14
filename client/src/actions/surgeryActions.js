@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_SURGERIES, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY} from '../types/userTypes';
+import {GET_SURGERIES, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY, DELETE_SURGERY} from '../types/userTypes';
 
 
 
@@ -11,7 +11,7 @@ export const getSurgeries = () => async (dispatch) => {
     const response = await axios.get('https://neurotraking-api.now.sh/surgery')
     dispatch({
       type: GET_SURGERIES,
-      payload: response
+      payload: response.data.body
     })
   }
   catch(error){
@@ -43,18 +43,15 @@ export const addSurgery = (surgery) => async(dispatch) => {
 //     );
 // }
 
-// export const deleteSurgery = id => dispatch  => {
-//   axios
-//     .delete(`https://neurotraking.now.sh/surgery/${id}`)
-//     .then( res => {
-//       dispatch({
-//         type: DELETE_SURGERY,
-//         payload: id
-//       })
-//     })
+export const deleteSurgery = (id) => (dispatch)  => {
+  axios.delete(`https://neurotraking-api.now.sh/surgery/${id}`)
+  dispatch({
+    type: DELETE_SURGERY,
+    payload: id
+  })
 
   
-// };
+};
 
 
 

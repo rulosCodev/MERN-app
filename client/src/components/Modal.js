@@ -17,7 +17,7 @@ function Modal (props) {
            onClose()
          }}
         >
-          <i class="fas fa-times"></i>
+          <i className="fas fa-times"></i>
         </button>
         {props.children}
       </div>

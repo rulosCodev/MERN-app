@@ -55,13 +55,13 @@ class SurgeriesList extends React.Component {
   }
 
   handlleDeleteSurgery(id) {
-    this.handleToggleModal(id)
     this.props.deleteSurgery(id)
+    this.handleToggleModal(id)
   }
 
   render() {
-    const surgeries = this.props.body;
-    console.log(surgeries);
+    console.log(this.props)
+    const { surgeries } = this.props;
     // console.log(this.props.surgeries)
     return (
       <div className='surgeriesList'>
@@ -69,19 +69,19 @@ class SurgeriesList extends React.Component {
         { surgeries.map(({_id,sex,age,diagnosis,surgery,date})=>{
           return(
             <Target key={_id}
-              id={surgery}
+              id={_id}
               sex={sex}
               age={age}
               diagnosis={diagnosis}
               surgery={surgery}
               date={date}
+              onDelete={this.handleToggleModal}
             />
           )
         })}
         <AddSurgeryModal
         onClose={this.handleToggleAddModal}
         isOpen={this.state.addModalIsOpen}
-
       />
       <DeleteSurgeryModal
         surgeryId={this.state.deleteTargetId}
@@ -102,7 +102,7 @@ class SurgeriesList extends React.Component {
 // };
 
 const mapStateToProps = (reducers) => {
-  return reducers.surgeryReducers.surgeries.data;
+  return reducers.surgeryReducers;
 };
 // const mapDispatchToProps = {
 //   getSurgeries,

@@ -1,11 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import '../assets/styles/components/Modal.scss';
 import Modal from './Modal';
 
 
 function DeleteSurgeryModal (props) {
  const { onDelete, onClose, surgeryId, onToggle, isOpen} = props;
+ console.log(surgeryId)
  return(
    <Modal isOpen={isOpen} onClose={onClose}>
     <div>
