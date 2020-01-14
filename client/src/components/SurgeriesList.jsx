@@ -4,26 +4,26 @@ import { connect } from 'react-redux';
 import Target from './Target';
 
 import * as surgeryActions from '../actions/surgeryActions';
-// import DeleteSurgeryModal from './DeleteSurgeryModal';
+import DeleteSurgeryModal from './DeleteSurgeryModal';
 
 import '../assets/styles/components/SurgeriesList.scss';
-// import AddSurgeryModal from './AddSurgeryModal';
+import AddSurgeryModal from './AddSurgeryModal';
 // import reducer from '../reducers/surgeryReducers';
 
 class SurgeriesList extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     deleteModalIsOpen: false,
-  //     addModalIsOpen: false,
-  //     deleteTargetId: ''
-  //   }
-  // this.handleToggleModal = this.handleToggleModal.bind(this);
-  // this.handleCloseModal = this.handleCloseModal.bind(this);
-  // this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
-  // this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleteModalIsOpen: false,
+      addModalIsOpen: false,
+      deleteTargetId: ''
+    }
+  this.handleToggleModal = this.handleToggleModal.bind(this);
+  this.handleCloseModal = this.handleCloseModal.bind(this);
+  this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
+  this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
+  }
 
   componentDidMount() {
     // eslint-disable-next-line react/destructuring-assignment
@@ -32,32 +32,32 @@ class SurgeriesList extends React.Component {
   }
 
 
-  // handleCloseModal(e) {
-  //   this.setState({ deleteModalIsOpen: false})
-  // }
-  // handleToggleModal(id){
-  //   this.setState({ deleteModalIsOpen: !this.state.deleteModalIsOpen})
-  //   if(this.state.deleteTargetId.length === 0) {
-  //     this.setState({
-  //       deleteTargetId: id
-  //     })
-  //   } else {
-  //     this.setState({
-  //       deleteTargetId: ''
-  //     })
-  //   }
+  handleCloseModal(e) {
+    this.setState({ deleteModalIsOpen: false})
+  }
+  handleToggleModal(id){
+    this.setState({ deleteModalIsOpen: !this.state.deleteModalIsOpen})
+    if(this.state.deleteTargetId.length === 0) {
+      this.setState({
+        deleteTargetId: id
+      })
+    } else {
+      this.setState({
+        deleteTargetId: ''
+      })
+    }
 
-  // }
-  // handleToggleAddModal() {
-  //   this.setState({
-  //     addModalIsOpen: !this.state.addModalIsOpen,
-  //   })
-  // }
+  }
+  handleToggleAddModal() {
+    this.setState({
+      addModalIsOpen: !this.state.addModalIsOpen,
+    })
+  }
 
-  // handlleDeleteSurgery(id) {
-  //   this.handleToggleModal(id)
-  //   this.props.deleteSurgery(id)
-  // }
+  handlleDeleteSurgery(id) {
+    this.handleToggleModal(id)
+    this.props.deleteSurgery(id)
+  }
 
   render() {
     const surgeries = this.props.body;
@@ -78,7 +78,7 @@ class SurgeriesList extends React.Component {
             />
           )
         })}
-        {/* <AddSurgeryModal
+        <AddSurgeryModal
         onClose={this.handleToggleAddModal}
         isOpen={this.state.addModalIsOpen}
 
@@ -89,7 +89,7 @@ class SurgeriesList extends React.Component {
         onDelete={this.handlleDeleteSurgery}
         onToggle={this.handleToggleModal}
         isOpen={this.state.deleteModalIsOpen}
-      /> */}
+      />
       </div>
     );
 

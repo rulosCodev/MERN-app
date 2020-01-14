@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_SURGERIES, ERROR_SURGERY, LOADING_SURGERY } from '../types/userTypes';
+import {GET_SURGERIES, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY} from '../types/userTypes';
 
 
 
@@ -22,6 +22,13 @@ export const getSurgeries = () => async (dispatch) => {
     })
   }
  
+};
+export const addSurgery = (surgery) => async(dispatch) => {
+  const response = await axios.post('https://neurotraking-api.now.sh/surgery', surgery)
+  dispatch({
+    type: ADD_SURGERY,
+    payload: response.data.body
+  })
 };
 
 // export const getSurgeries = () => dispatch => {
