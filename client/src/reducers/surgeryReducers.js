@@ -1,6 +1,11 @@
 import {GET_SURGERIES, LOADING_SURGERY, ERROR_SURGERY} from '../types/userTypes';
 const INITIAL_STATE = {
-  surgeries: [],
+  surgeries: {
+    data: {
+      error: "",
+      body: []
+    }
+  },
   loanding: false,
   error: ''
 }

@@ -31,6 +31,7 @@ class SurgeriesList extends React.Component {
 
   }
 
+
   // handleCloseModal(e) {
   //   this.setState({ deleteModalIsOpen: false})
   // }
@@ -59,12 +60,24 @@ class SurgeriesList extends React.Component {
   // }
 
   render() {
-    const surgeries = this.props.surgeries.data;
+    const surgeries = this.props.body;
     console.log(surgeries);
     // console.log(this.props.surgeries)
     return (
       <div className='surgeriesList'>
         <button type='button' onClick={this.handleToggleAddModal}>Nueva cirugía</button>
+        { surgeries.map(({_id,sex,age,diagnosis,surgery,date})=>{
+          return(
+            <Target key={_id}
+              id={surgery}
+              sex={sex}
+              age={age}
+              diagnosis={diagnosis}
+              surgery={surgery}
+              date={date}
+            />
+          )
+        })}
         {/* <AddSurgeryModal
         onClose={this.handleToggleAddModal}
         isOpen={this.state.addModalIsOpen}
@@ -89,7 +102,7 @@ class SurgeriesList extends React.Component {
 // };
 
 const mapStateToProps = (reducers) => {
-  return reducers.surgeryReducers;
+  return reducers.surgeryReducers.surgeries.data;
 };
 // const mapDispatchToProps = {
 //   getSurgeries,
