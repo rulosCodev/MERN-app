@@ -8,7 +8,7 @@ export const getSurgeries = () => async (dispatch) => {
     type: LOADING_SURGERY
   })
   try {
-    const response = await axios.get('https://neurotraking.now.sh/surgery')
+    const response = await axios.get('https://neurotraking-api.now.sh/surgery')
     dispatch({
       type: GET_SURGERIES,
       payload: response
