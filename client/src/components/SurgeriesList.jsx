@@ -1,117 +1,99 @@
-import React, {useState} from 'react'
+import React from 'react';
 
-import Target from './Target';
 import { connect } from 'react-redux';
+import Target from './Target';
 
-import { getSurgeries, deleteSurgery } from '../../actions/surgeryActions';
-import PropTypes from "prop-types";
-import DeleteSurgeryModal from './DeleteSurgeryModal';
+import * as surgeryActions from '../actions/surgeryActions';
+// import DeleteSurgeryModal from './DeleteSurgeryModal';
 
 import '../assets/styles/components/SurgeriesList.scss';
-import AddSurgeryModal from './AddSurgeryModal';
+// import AddSurgeryModal from './AddSurgeryModal';
+// import reducer from '../reducers/surgeryReducers';
 
 class SurgeriesList extends React.Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      deleteModalIsOpen: false,
-      addModalIsOpen: false,
-      deleteTargetId: ''
-    }
-    this.handleToggleModal = this.handleToggleModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
-    this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
-  }
- 
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     deleteModalIsOpen: false,
+  //     addModalIsOpen: false,
+  //     deleteTargetId: ''
+  //   }
+  // this.handleToggleModal = this.handleToggleModal.bind(this);
+  // this.handleCloseModal = this.handleCloseModal.bind(this);
+  // this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
+  // this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
+  // }
 
   componentDidMount() {
-    this.props.getSurgeries() 
-   
-  }
-
-  handleCloseModal(e) {
-    this.setState({ deleteModalIsOpen: false})
-  }
-  handleToggleModal(id){
-    this.setState({ deleteModalIsOpen: !this.state.deleteModalIsOpen})
-    if(this.state.deleteTargetId.length === 0) {
-      this.setState({
-        deleteTargetId: id
-      })
-    } else {
-      this.setState({
-        deleteTargetId: ''
-      })
-    }
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.getSurgeries();
 
   }
-  handleToggleAddModal() {
-    this.setState({
-      addModalIsOpen: !this.state.addModalIsOpen,
-    })
-  }
 
-  handlleDeleteSurgery(id) {
-    this.handleToggleModal(id)
-    this.props.deleteSurgery(id)
-  }
- 
+  // handleCloseModal(e) {
+  //   this.setState({ deleteModalIsOpen: false})
+  // }
+  // handleToggleModal(id){
+  //   this.setState({ deleteModalIsOpen: !this.state.deleteModalIsOpen})
+  //   if(this.state.deleteTargetId.length === 0) {
+  //     this.setState({
+  //       deleteTargetId: id
+  //     })
+  //   } else {
+  //     this.setState({
+  //       deleteTargetId: ''
+  //     })
+  //   }
+
+  // }
+  // handleToggleAddModal() {
+  //   this.setState({
+  //     addModalIsOpen: !this.state.addModalIsOpen,
+  //   })
+  // }
+
+  // handlleDeleteSurgery(id) {
+  //   this.handleToggleModal(id)
+  //   this.props.deleteSurgery(id)
+  // }
+
   render() {
-    const surgeries = this.props.surgeries
+    const surgeries = this.props.surgeries.data;
+    console.log(surgeries);
     // console.log(this.props.surgeries)
-    return(
-      <div className="surgeriesList">
-      <button onClick={this.handleToggleAddModal}>Nueva cirugía</button>
-      { surgeries.map(({_id, sex, age, diagnosis, surgery, date})=>{
-        return(
-
-        <Target 
-          key={_id}
-          id={_id}
-          sex={sex}
-          age={age}
-          diagnosis={diagnosis}
-          surgery={surgery}
-          date={date}
-          onDelete={this.handleToggleModal}
-        />
-        )
-      })}
-      <AddSurgeryModal 
+    return (
+      <div className='surgeriesList'>
+        <button type='button' onClick={this.handleToggleAddModal}>Nueva cirugía</button>
+        {/* <AddSurgeryModal
         onClose={this.handleToggleAddModal}
         isOpen={this.state.addModalIsOpen}
 
       />
-      <DeleteSurgeryModal  
-        surgeryId={this.state.deleteTargetId} 
+      <DeleteSurgeryModal
+        surgeryId={this.state.deleteTargetId}
         onClose={this.handleToggleModal}
-        onDelete={this.handlleDeleteSurgery} 
-        onToggle={this.handleToggleModal} 
+        onDelete={this.handlleDeleteSurgery}
+        onToggle={this.handleToggleModal}
         isOpen={this.state.deleteModalIsOpen}
-      />
+      /> */}
       </div>
-    )
+    );
 
   }
 }
 
+// SurgeriesList.propTypes = {
+//   getSurgeries: PropTypes.func.isRequired,
+//   // surgeries: PropTypes.object.isRequired,
+// };
 
-SurgeriesList.propTypes = {
-  getSurgeries: PropTypes.func.isRequired,
-  // surgeries: PropTypes.object.isRequired,
+const mapStateToProps = (reducers) => {
+  return reducers.surgeryReducers;
 };
+// const mapDispatchToProps = {
+//   getSurgeries,
+//   // deleteSurgery,
+// };
 
-const mapStateToProps = (state) => {
-  return {
-    surgeries: state.surgery.surgeries
-    
-  };
-};
-const mapDispatchToProps = {
-  getSurgeries,
-  deleteSurgery,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);
+export default connect(mapStateToProps, surgeryActions)(SurgeriesList);

@@ -32,8 +32,6 @@ db(config.dbUri);
 
 // Routes
 router(app);
-
-
   const port = config.port;
 app.listen(port, ()=>{
     console.log(`Server started on http://localhost:${port}`);

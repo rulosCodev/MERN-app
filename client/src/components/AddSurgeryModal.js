@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import '../assets/styles/components/Modal.scss';
 import { connect } from 'react-redux';
-import { addSurgery } from '../../actions/surgeryActions';
+import { addSurgery } from '../actions/surgeryActions';
 
 import Modal from './Modal';
 
