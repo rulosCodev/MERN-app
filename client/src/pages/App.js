@@ -2,12 +2,12 @@ import React from 'react';
 import '../assets/styles/App.scss';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/styles/App.scss';
 
 function App() {
 
   return (
-      <div>
+      <div className="appContainer">
         <Header />
         <Main />
       </div>

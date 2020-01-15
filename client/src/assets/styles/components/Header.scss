@@ -1,54 +1,80 @@
 @import '../Vars.scss';
-
+@import '../breakpoints';
 .header {
-  width: 100vw;
-  height: 15vh;
-  background: #ffff;
-  box-shadow: 0px 7px 5px -4px rgba(5, 5, 9, 0.445);
-  overflow-anchor: hidden;
+  background: linear-gradient(#19A8E0,#edeef4);
+  color: #fff;
   display: grid;
-  grid-template: 1fr/ 15vw 70vw 15vw;
-  .headerItemContainer {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  grid-template: 1fr .5fr / 1fr 1fr;
+  grid-template-areas: "logo user"
+                        "nav nav";
+
+  width: 100%;
+  padding: 0 1em;
+  &__logoContainer {
+    grid-area: logo;
+    .logo {
+      width: 20%;
+    }
   }
-    &__logo {
-      left: 2%;
-      font-size:1.8em;
-      width: 5em;
-     
-    }
-    nav {
-      height: 100%;
-    }
-    &__nav {
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      align-items: flex-end;
-      list-style: none;
-      li {
-        text-transform: uppercase;
-        font-size: .9em;
-        padding: 1em 3em;
-        cursor: pointer;
-        transition: .5s;
-        font-weight: bold;
-        border-bottom: 3px solid transparent;
-      }
-      li:hover {
-        color: #f3a937;
-        border-bottom: 3px solid $second-color;
-      }
+  &__perfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    grid-area: user;
+    p {
+      text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
     }
     .perfil {
-      flex-direction: column;
-      img {
-        width: 4em;
-        border-radius: 50%;
+      width: 10%;
+      border-radius: 50%;
+      
+
+    }
+  }
+  &__nav {
+    color: #2a2a2a;
+    font-weight: bold;
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-bottom: 3px solid rgba(0, 0, 0, 0);
+
+    ul {
+      display: flex;
+      list-style: none;
+      li {
+        padding: 1em;
       }
     }
+  }
+  
+  .nav_active {
+    border-bottom: 3px solid #000;
+    color: #141414;
+  }
 }
+
+@include media(mobile-only){
+  .header {
+    width: 100%;
+    padding: 1em 1em;
+    &__logoContainer {
+      grid-area: logo;
+      .logo {
+        width: 60%;
+      }
+    }
+    &__perfil{
+      
+      .perfil {
+        width: 30%;
+        border-radius: 50%;
+        
+  
+      }
+    }
+  }
+}
+

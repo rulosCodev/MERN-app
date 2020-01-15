@@ -6,24 +6,24 @@ import perfil from '../assets/static/logo.jpg';
 const Header = () => {
   return (
     <div className='header'>
-      <div className='headerItemContainer'>
+      <div className='header__logoContainer'>
         <img
           src={logo}
           atl='logo'
-          className='header__logo'
+          className='logo'
         />
       </div>
 
-      <nav>
-        <ul className='header__nav'>
-          <li>Preoperatorio</li>
-          <li>Intraoperatorio</li>
-          <li>Postoperatorio</li>
+      <nav className='header__nav' >
+        <ul >
+          <li id="pre" className="nav_active">Preoperatorio</li>
+          <li id="intra">Intraoperatorio</li>
+          <li id="post">Postoperatorio</li>
 
         </ul>
       </nav>
-      <div className='headerItemContainer perfil'>
-        <img src={perfil} atl='perfil' />
+      <div className='header__perfil'>
+        <img className="perfil" src={perfil} atl='perfil' />
         <p className='perfilName'>Dc. Fredy</p>
       </div>
     </div>
