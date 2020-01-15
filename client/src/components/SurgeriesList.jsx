@@ -65,7 +65,7 @@ class SurgeriesList extends React.Component {
     // console.log(this.props.surgeries)
     return (
       <div className='surgeriesList'>
-        <button type='button' onClick={this.handleToggleAddModal}>Nueva cirugía</button>
+        <button className="btn-add" type='button' onClick={this.handleToggleAddModal}>Nueva cirugía</button>
         { surgeries.map(({_id,sex,age,diagnosis,surgery,date})=>{
           return(
             <Target key={_id}

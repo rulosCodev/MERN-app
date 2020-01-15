@@ -1,7 +1,7 @@
 @import '../Vars.scss';
 @import '../breakpoints';
 .header {
-  background: linear-gradient(#19A8E0,#edeef4);
+  background: linear-gradient(#11aec8,#edeef4);
   color: #fff;
   display: grid;
   grid-template: 1fr .5fr / 1fr 1fr;
@@ -9,7 +9,7 @@
                         "nav nav";
 
   width: 100%;
-  padding: 0 1em;
+  padding: .5em 2em 0em 1em;
   &__logoContainer {
     grid-area: logo;
     .logo {
@@ -59,7 +59,6 @@
 @include media(mobile-only){
   .header {
     width: 100%;
-    padding: 1em 1em 0 .5em;
     &__logoContainer {
       grid-area: logo;
       .logo {
