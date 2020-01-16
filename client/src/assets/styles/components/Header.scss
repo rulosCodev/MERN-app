@@ -7,14 +7,20 @@
   grid-template: 1fr .5fr / 1fr 1fr;
   grid-template-areas: "logo user"
                         "nav nav";
-  padding: .5em 2em 0em 1em;
+
+  padding: .5em 2em 0em .3em;
   &__logoContainer {
+
     grid-area: logo;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     .logo {
-      width: 20%;
+      width: 10%;
+      transform: rotate(180deg);
+    }
+    span {
+      color: #2c3e73;
     }
   }
   &__perfil{
@@ -62,7 +68,7 @@
   .header {
     &__logoContainer {
       .logo {
-        width: 40%;
+        width: 15%;
       }
     }
     &__perfil{
@@ -86,18 +92,15 @@
   .header {
     width: 100%;
     &__logoContainer {
-      grid-area: logo;
+      font-size: .9em;
       .logo {
-        width: 60%;
+        width: 25%;
       }
     }
     &__perfil{
-      
       .perfil {
         width: 30%;
         border-radius: 50%;
-        
-  
       }
     }
     &__nav {
@@ -116,8 +119,9 @@
 @include media(mobile-m){
   .header {
     &__logoContainer {
+      font-size: .9em;
       .logo {
-        width: 60%;
+        width: 25%;
       }
     }
     &__perfil{
@@ -140,8 +144,9 @@
 @include media(mobile-s){
   .header {
     &__logoContainer {
+      font-size: .7em;
       .logo {
-        width: 70%;
+        width: 35%;
       }
     }
     &__perfil{

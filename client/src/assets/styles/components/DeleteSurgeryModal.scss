@@ -1,0 +1,25 @@
+@import '../Vars.scss';
+
+.btnContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+button {
+  padding: 1em 1.5em;
+  outline: none;
+  border: none;
+  border-radius: 1em;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+
+}
+.btnDelete {
+  background: #ff111c ;
+}
+.btnCancel {
+  background: #8ac149 ;
+}

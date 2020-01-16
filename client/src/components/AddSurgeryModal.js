@@ -102,7 +102,7 @@ const handleSubmit = (event) => {
 
           </textarea>
         
-        <button id="btnSubmit" type="submit">submit</button>
+        <button id="btnSubmit" type="submit">Crear</button>
       </form>
     </div>
    </Modal>

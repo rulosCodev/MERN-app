@@ -1,6 +1,6 @@
 import React from 'react';
 import '../assets/styles/components/Header.scss';
-import logo from '../assets/static/logo3.png';
+import logo from '../assets/static/brain.png';
 import perfil from '../assets/static/logo.jpg';
 
 const Header = () => {
@@ -12,6 +12,7 @@ const Header = () => {
           atl='logo'
           className='logo'
         />
+        <h1>Neuro<span>Traking</span></h1>
       </div>
 
       <nav className='header__nav' >
