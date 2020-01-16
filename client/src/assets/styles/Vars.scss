@@ -5,19 +5,11 @@ $blackground: #a6e9f5;
 
 body {
   background: #edeef4;
+  overflow: hidden;
 }
-.border {
-  border: red solid 2px;
-}
+
 @mixin border {
   border: red solid 2px;
 }
 
-.flex {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 

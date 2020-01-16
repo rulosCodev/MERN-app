@@ -24,6 +24,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-size: .7em;
+    h1 {
+      text-shadow: 1px 1px  rgba(0, 0, 0, 0.616);
+    }
 
   }
   &__info {
@@ -76,12 +80,6 @@
 
 
 
-@include media(mobile-only){
-  .target {
-    font-size: 14px;
-  }
-  .label {
-    font-size: 17px;
-  }
-}
+
+
 

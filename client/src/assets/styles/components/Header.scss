@@ -7,11 +7,12 @@
   grid-template: 1fr .5fr / 1fr 1fr;
   grid-template-areas: "logo user"
                         "nav nav";
-
-  width: 100%;
   padding: .5em 2em 0em 1em;
   &__logoContainer {
     grid-area: logo;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     .logo {
       width: 20%;
     }
@@ -34,6 +35,7 @@
   }
   &__nav {
     color: #2a2a2a;
+
     font-weight: bold;
     grid-area: nav;
     display: flex;
@@ -56,7 +58,31 @@
   }
 }
 
-@include media(mobile-only){
+@include media (tablet) {
+  .header {
+    &__logoContainer {
+      .logo {
+        width: 40%;
+      }
+    }
+    &__perfil{
+      .perfil {
+        width: 20%;
+        border-radius: 50%;
+      }
+    }
+    &__nav {
+      ul {
+        li {
+          font-size: 1em;
+          padding: .5em;
+        }
+      }
+    }
+  }
+
+}
+@include media(mobile-l){
   .header {
     width: 100%;
     &__logoContainer {
@@ -72,6 +98,64 @@
         border-radius: 50%;
         
   
+      }
+    }
+    &__nav {
+  
+      ul {
+        display: flex;
+        list-style: none;
+        li {
+          font-size: .8em;
+          padding: .5em;
+        }
+      }
+    }
+  }
+}
+@include media(mobile-m){
+  .header {
+    &__logoContainer {
+      .logo {
+        width: 60%;
+      }
+    }
+    &__perfil{
+      .perfil {
+        width: 30%;
+        border-radius: 50%;
+      }
+    }
+    &__nav {
+      ul {
+        li {
+          font-size: .9em;
+          padding: .5em;
+        }
+      }
+    }
+  }
+
+}
+@include media(mobile-s){
+  .header {
+    &__logoContainer {
+      .logo {
+        width: 70%;
+      }
+    }
+    &__perfil{
+      .perfil {
+        width: 40%;
+        border-radius: 50%;
+      }
+    }
+    &__nav {
+      font-size: .8em;
+      ul {
+        li {
+          padding: .5em;
+        }
       }
     }
   }
