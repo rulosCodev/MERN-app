@@ -9,7 +9,7 @@ import DeleteSurgeryModal from './DeleteSurgeryModal';
 import '../assets/styles/components/SurgeriesList.scss';
 import AddSurgeryModal from './AddSurgeryModal';
 // import reducer from '../reducers/surgeryReducers';
-
+import MyForm from './Myform';
 class SurgeriesList extends React.Component {
 
   constructor(props) {
@@ -23,6 +23,8 @@ class SurgeriesList extends React.Component {
   this.handleCloseModal = this.handleCloseModal.bind(this);
   this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
   this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   componentDidMount() {
@@ -30,7 +32,9 @@ class SurgeriesList extends React.Component {
     this.props.getSurgeries();
 
   }
-
+  handleSubmit(values) {
+    console.log(values)
+  }
 
   handleCloseModal(e) {
     this.setState({ deleteModalIsOpen: false})
@@ -62,6 +66,7 @@ class SurgeriesList extends React.Component {
   render() {
     console.log(this.props)
     const { surgeries } = this.props;
+    console.log(typeof(surgeries))
     // console.log(this.props.surgeries)
     return (
       <div className='surgeriesList'>

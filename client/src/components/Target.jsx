@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import * as uploadsActions from '../actions/uploadsActions';
+import axios from 'axios';
 import '../assets/styles/components/Target.scss';
+import { array } from 'prop-types';
 
+import Myform from './Myform';
+import MyImagenes from './MyImages';
+const Target = (props) => {
 
-const Target = ({
-   id,
-   sex,
-   age,
-   diagnosis,
-   surgery,
-   date,
-   onDelete,
-  }) => {
-
+  const{  id,
+    sex,
+    age,
+    diagnosis,
+    surgery,
+    date,
+    onDelete,
+    addFile,
+    getFiles,
+  changeFile} = props;
   const year = date.slice(0,4)
   const month = date.slice(5,7)
   const day = date.slice(8,10)
+  
+  const handleChange = (event)=>{
+    const file = event.target.files[0];
+    console.log(file)
 
+    // changeFile(newFiles)
+    //   const newFiles = {
+    //     name: file.name,
+    //     lastModified: file.lastModified,
+    //     lastModifiedDate: file.lastModifiedDate,
+    //     webkitRelativePath: file.webkitRelativePath,
+    //     size: file.size,
+    //     type: file.type
+    //   }
+  }
   const writeMonth=(month)=>{
     switch(month){
       case '01' :
@@ -45,8 +66,23 @@ const Target = ({
       default: return month
     }
   }
-  const newDate = `${writeMonth(month)} ${year}`
-  console.log(day)
+  
+
+  const handleSelecFile = (event)=>{
+    console.log(event.target.files[0])
+    setFile(event.target.files[0]);
+    setFileName(event.target.files[0].name)
+  }
+  const handleSave = (event) => {
+    event.preventDefault();
+    
+    const form = new FormData(event.target)
+    console.log(form)
+    addFile(form)
+
+    } 
+
+  console.log(props)
   return (
     <div className='target'>
 
@@ -86,7 +122,20 @@ const Target = ({
           {surgery}
           </p>
         </div>
-        
+        <form 
+        onSubmit={handleSave}
+        // action="http://localhost:4000/upload"
+        // method="POST"
+        // enctype="multipart/form-data"
+        >
+          <input  onChange={handleChange} type="file" name="file" id="file" />
+          <input
+          type='submit'
+          value='Upload'
+          className='submit'
+        />
+        </form>
+        <MyImagenes />
       </div>
       <button
         className="btn_delete"
@@ -103,6 +152,6 @@ const Target = ({
     </div>
   );
 };
+const mapStateToProps = ({uploadsReducers}) => uploadsReducers;
 
-
-export default Target;
+export default connect(mapStateToProps, uploadsActions) (Target);
