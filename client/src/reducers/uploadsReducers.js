@@ -13,7 +13,7 @@ export default (state= INITIAL_STATE, action)=>{
     case ADD_FILE:
       return {
         ...state,
-        files: [action.payload, ...state.files]
+        uploadsfiles: [action.payload, ...state.uploadsfiles]
       };
     case CHANGE_FILE:
         return {

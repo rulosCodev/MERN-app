@@ -17,6 +17,8 @@ const Target = (props) => {
     date,
     onDelete,
     addFile,
+    addTargetUploads,
+    uploadsfiles,
     getFiles,
   changeFile} = props;
   const year = date.slice(0,4)
@@ -73,12 +75,24 @@ const Target = (props) => {
     setFile(event.target.files[0]);
     setFileName(event.target.files[0].name)
   }
-  const handleSave = (event) => {
+  const handleSave = async (event) => {
     event.preventDefault();
     
+    
     const form = new FormData(event.target)
-    console.log(form)
-    addFile(form)
+    try {
+      const response = await addFile(form)
+      console.log(response.filename)
+      const newTarget = {
+        surgeryid: id,
+        imageid: response.filename
+      }
+      addTargetUploads(newTarget)
+    } catch(error) {
+      console.log(error);
+      
+    }
+    
 
     } 
 
@@ -135,7 +149,7 @@ const Target = (props) => {
           className='submit'
         />
         </form>
-        <MyImagenes />
+        {/* <MyImagenes /> */}
       </div>
       <button
         className="btn_delete"

@@ -17,12 +17,13 @@ export const changeFile = (file) => (dispatch) => {
 export const addFile = (newFile) =>  async (dispatch) => {
   const config = { headers: { 'Content-Type': 'multipart/form-data' } }
   try {
-    const response = await axios.post('http://localhost:4000/upload', newFile, config)
+    const response = await axios.post('http://localhost:4000/uploads', newFile, config)
     console.log(response.data)
     dispatch({
       type: ADD_FILE,
-      payload: response.data
+      payload: response.data.body
     })
+    return response.data.body
   } catch (error) {
     console.log(error);
   }
@@ -31,7 +32,7 @@ export const addFile = (newFile) =>  async (dispatch) => {
 
 export const getFiles = () =>  async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:4000/upload')
+    const response = await axios.get('http://localhost:4000/uploads')
     console.log(response.data)
     dispatch({
       type: GET_FILES,
@@ -43,4 +44,13 @@ export const getFiles = () =>  async (dispatch) => {
   
 }
 
+export const addTargetUploads = (newTarget) => async (dispatch) => {
+  try {
+    console.log(newTarget)
+    const response = await axios.post('http://localhost:4000/target', newTarget)
+    console.log(response.data)
+  } catch (error) {
+    console.log(error.message)
+  }
+}
 
