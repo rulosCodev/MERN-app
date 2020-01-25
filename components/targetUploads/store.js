@@ -17,9 +17,20 @@ async function getTargets(filterTarget) {
   return getTargetsList;
 }
 
+async function updateTarget(id, images) {
+  const foundTarget = await Model.findOne({
+    _id: id
+  });
+  foundTarget.imageid = images;
+  const newTarget = await foundTarget.save();
+
+  return newTarget;
+}
+
 
 
 module.exports = {
   add: addTarget,
-  list: getTargets
+  list: getTargets,
+  update: updateTarget,
 }

@@ -21,9 +21,20 @@ function getTargets(filterTarget) {
   })
 }
 
+function updateTarget(id, images) {
+  return new Promise(async (resolve, reject)=>{
+    if(!id || !images){
+      return reject('Invalid data');
+    }
+    const result= await store.update(id, images);
+    resolve(result)
+  })
+}
+
 
 
 module.exports = {
   addTarget,
-  getTargets
+  getTargets,
+  updateTarget
 }
