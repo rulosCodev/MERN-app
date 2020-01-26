@@ -11,7 +11,7 @@ const targetSchema = new Schema({
   },
 
   imageid: {
-    type: String,
+    type: Array,
     required: true
   },
 

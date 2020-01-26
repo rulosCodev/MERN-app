@@ -6,7 +6,7 @@ import '../assets/styles/components/Target.scss';
 import { array } from 'prop-types';
 
 import Myform from './Myform';
-import MyImagenes from './MyImages';
+import Uploads from './Uploads';
 const Target = (props) => {
 
   const{  id,
@@ -29,15 +29,15 @@ const Target = (props) => {
     const file = event.target.files[0];
     console.log(file)
 
-    // changeFile(newFiles)
-    //   const newFiles = {
-    //     name: file.name,
-    //     lastModified: file.lastModified,
-    //     lastModifiedDate: file.lastModifiedDate,
-    //     webkitRelativePath: file.webkitRelativePath,
-    //     size: file.size,
-    //     type: file.type
-    //   }
+    const newFiles = {
+      name: file.name,
+      lastModified: file.lastModified,
+      lastModifiedDate: file.lastModifiedDate,
+      webkitRelativePath: file.webkitRelativePath,
+      size: file.size,
+      type: file.type
+    }
+    changeFile(newFiles)
   }
   const writeMonth=(month)=>{
     switch(month){
@@ -82,12 +82,14 @@ const Target = (props) => {
     const form = new FormData(event.target)
     try {
       const response = await addFile(form)
-      console.log(response.filename)
-      const newTarget = {
-        surgeryid: id,
-        imageid: response.filename
-      }
-      addTargetUploads(newTarget)
+      
+      
+      // console.log(uploadsfiles.filename)
+      // const newTarget = {
+      //   surgeryid: id,
+      //   imageid: Object.values(uploadsfiles)
+      // }
+      // addTargetUploads(newTarget)
     } catch(error) {
       console.log(error);
       
@@ -96,7 +98,6 @@ const Target = (props) => {
 
     } 
 
-  console.log(props)
   return (
     <div className='target'>
 
@@ -149,6 +150,7 @@ const Target = (props) => {
           className='submit'
         />
         </form>
+        <Uploads id={id} uploadsFiles={null}/>
         {/* <MyImagenes /> */}
       </div>
       <button

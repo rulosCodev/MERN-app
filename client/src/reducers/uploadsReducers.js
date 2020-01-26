@@ -1,9 +1,11 @@
-import { ADD_FILE, CHANGE_FILE, GET_FILES} from '../types/uploadsTypes';
+import { ADD_FILE, CHANGE_FILE, GET_FILES, GET_TARGET} from '../types/uploadsTypes';
 import { changeFile } from '../actions/uploadsActions';
 const INITIAL_STATE = {
   files: [],
   loading: false,
-  uploadsfiles: [],
+  uploadsfiles: [
+  ],
+  target: [],
   error: ''
 }
 
@@ -24,6 +26,11 @@ export default (state= INITIAL_STATE, action)=>{
       return {
         ...state,
         uploadsfiles: action.payload,
+      }
+    case GET_TARGET:
+      return {
+        ...state,
+        target: action.payload,
       }
     default:
       return state;
