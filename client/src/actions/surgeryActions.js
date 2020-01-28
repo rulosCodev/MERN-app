@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_SURGERIES, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY, DELETE_SURGERY} from '../types/userTypes';
+import {GET_SURGERIES,GET_SURGERY, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY, DELETE_SURGERY} from '../types/surgeryTypes';
 
 
 
@@ -23,6 +23,27 @@ export const getSurgeries = () => async (dispatch) => {
   }
  
 };
+export const getSurgery = (id) => async (dispatch) => {
+  dispatch({
+    type: LOADING_SURGERY
+  })
+  try {
+    const response = await axios.get(`http://localhost:5000/surgery/${id}`)
+    dispatch({
+      type: GET_SURGERY,
+      payload: response.data.body
+    })
+  }
+  catch(error){
+    console.log(`Error : ${error.message}`);
+    dispatch({
+      type: ERROR_SURGERY,
+      payload: error.message
+    })
+  }
+ 
+};
+
 export const addSurgery = (surgery) => async(dispatch) => {
   const response = await axios.post('http://localhost:5000/surgery', surgery)
   const newtarget = response.data.body

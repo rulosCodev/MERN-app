@@ -29,8 +29,8 @@ function addSurgery(sex, age, diagnosis, surgeryprocess) {
   return store.add(fullSurgery)
 }
 
-function getSurgeries() {
-  return store.list()
+function getSurgeries(surgeryid) {
+  return store.list(surgeryid)
 }
 
 function deleteSurgery(id) {

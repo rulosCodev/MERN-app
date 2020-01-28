@@ -8,8 +8,14 @@ function addSurgery(fullSurgery) {
  
 };
 
-async function getSurgeries() {
-  const surgeriesList = await Model.find().sort({date: -1});
+async function getSurgeries(surgeryid) {
+  let filter = {};
+    if (surgeryid) {
+      filter= {
+        _id: surgeryid,      
+      }
+    }
+  const surgeriesList = await Model.find(filter).sort({date: -1});
   return surgeriesList;
 }
 

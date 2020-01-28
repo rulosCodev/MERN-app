@@ -1,6 +1,7 @@
-import {GET_SURGERIES, LOADING_SURGERY, ERROR_SURGERY, DELETE_SURGERY, ADD_SURGERY} from '../types/userTypes';
+import {GET_SURGERIES, GET_SURGERY, LOADING_SURGERY, ERROR_SURGERY, DELETE_SURGERY, ADD_SURGERY} from '../types/surgeryTypes';
 const INITIAL_STATE = {
   surgeries: [],
+  surgery:'',
   loading: false,
   error: ''
 }
@@ -17,6 +18,12 @@ export default (state= INITIAL_STATE, action)=>{
       return {
         ...state,
         surgeries: action.payload,
+        loading: false
+      };
+    case GET_SURGERY:
+      return {
+        ...state,
+        surgery: action.payload[0],
         loading: false
       };
     case DELETE_SURGERY:

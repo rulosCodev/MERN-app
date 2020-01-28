@@ -10,7 +10,17 @@ const router = express.Router();
 
 router.get('/', async (req, res)=>{
   try {
-    const surgeriesList = await controller.getSurgeries();
+    const surgeriesList = await controller.getSurgeries(req.params.sugeryid);
+    response.success(req, res, surgeriesList, 200)
+  }
+  catch(err) {
+    response.error(req,res, 'Internal error', err)
+  }
+})
+
+router.get('/:sugeryid', async (req, res)=>{
+  try {
+    const surgeriesList = await controller.getSurgeries(req.params.sugeryid);
     response.success(req, res, surgeriesList, 200)
   }
   catch(err) {
