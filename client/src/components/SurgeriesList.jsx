@@ -63,10 +63,10 @@ class SurgeriesList extends React.Component {
     this.handleToggleModal(id)
   }
 
+
+  
   render() {
-    console.log(this.props)
     const { surgeries } = this.props;
-    console.log(typeof(surgeries))
     // console.log(this.props.surgeries)
     return (
       <div className='surgeriesList'>

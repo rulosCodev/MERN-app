@@ -11,17 +11,17 @@ function addTarget(fullSurgery) {
 async function getTargets(filterTarget) {
     let filter = {};
     if(filterTarget) {
-      filter = { surgeryid:filterTarget }
+      filter = { surgeryid: filterTarget }
     }
   const getTargetsList = await Model.find(filter).sort({date: -1});
   return getTargetsList;
 }
 
-async function updateTarget(id, images) {
+async function updateTarget(id, image) {
   const foundTarget = await Model.findOne({
     _id: id
   });
-  foundTarget.imageid = images;
+  foundTarget.imageid = [image, ...foundTarget.imageid];
   const newTarget = await foundTarget.save();
 
   return newTarget;

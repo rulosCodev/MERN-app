@@ -3,15 +3,27 @@ const store = require('./store');
 
 
 
-function addSurgery(sex, age, diagnosis, surgery) {
-  if(!sex || !age || !diagnosis || !surgery) {
+function addSurgery(sex, age, diagnosis, surgeryprocess) {
+  if(!sex || !age || !diagnosis || !surgeryprocess) {
     return Promise.reject('Invalid data');
   }
   const fullSurgery = {
     sex,
     age,
     diagnosis,
-    surgery,
+    surgeryprocess,
+    pre: {
+      images: [],
+      observation: ''
+    },
+    intra: {
+      images: [],
+      observation: ''
+    },
+    post: {
+      images: [],
+      observation: ''
+    }
   };
 
   return store.add(fullSurgery)

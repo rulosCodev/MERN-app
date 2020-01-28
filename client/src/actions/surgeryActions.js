@@ -8,7 +8,7 @@ export const getSurgeries = () => async (dispatch) => {
     type: LOADING_SURGERY
   })
   try {
-    const response = await axios.get('http://localhost:4000/surgery')
+    const response = await axios.get('http://localhost:5000/surgery')
     dispatch({
       type: GET_SURGERIES,
       payload: response.data.body
@@ -24,7 +24,13 @@ export const getSurgeries = () => async (dispatch) => {
  
 };
 export const addSurgery = (surgery) => async(dispatch) => {
-  const response = await axios.post('http://localhost:4000/surgery', surgery)
+  const response = await axios.post('http://localhost:5000/surgery', surgery)
+  const newtarget = response.data.body
+  console.log(newtarget)
+  const response2 = await axios.post('http://localhost:5000/target', {
+    surgeryid: newtarget._id,
+    imageid: []
+  })
   dispatch({
     type: ADD_SURGERY,
     payload: response.data.body
@@ -44,7 +50,7 @@ export const addSurgery = (surgery) => async(dispatch) => {
 // }
 
 export const deleteSurgery = (id) => (dispatch)  => {
-  axios.delete(`http://localhost:4000/surgery/${id}`)
+  axios.delete(`http://localhost:5000/surgery/${id}`)
   dispatch({
     type: DELETE_SURGERY,
     payload: id

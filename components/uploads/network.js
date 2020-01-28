@@ -9,7 +9,7 @@ const Grid = require('gridfs-stream');
 const mongoose = require('mongoose');
 
 const { config } = require('../../config');
-
+const controller = require('./controller');
 
 const conn = mongoose.createConnection(config.dbUri2);
 
@@ -24,10 +24,30 @@ conn.once('open', ()=>{
 
 // ADD FILE
 router.post('/',upload.single('file'), (req, res) => {
-
   response.success(req, res, req.file)
 })
 
+
+// PATCH UPLOAD
+
+router.patch('/:filename', (req,res)=>{
+  const {_id} = req.body
+ 
+   gfs.files.update(
+     {"_id" : "5e2c57a3a4381152c7a78fd9" },
+     {$set : {"targetid":8}},
+   (err, file)=> {
+    // Check if files 
+  if(!file) {
+   return res.status(404).json({
+     err: "not file exists"
+   })
+  }
+  // File exists
+  return response.success(req, res, file, 200);
+ })
+   // File exists
+});
 // GET ALL UPLOADS
 router.get('/', async (req, res)=>{
   gfs.files.find().sort({uploadDate: -1}).toArray((err, files)=>{

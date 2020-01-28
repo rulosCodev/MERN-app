@@ -5,6 +5,18 @@ function getUploads() {
   return 'hola hola'
 }
 
+function updateUpload(id, targetid) {
+  return new Promise(async (resolve, reject)=>{
+    if(!id || !targetid){
+      return reject('Invalid data');
+    }
+    const result= store.update(id, targetid);
+    resolve(result)
+  })
+}
+
 module.exports = {
-  getUploads
+  getUploads,
+  updateUpload
+
 }

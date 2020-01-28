@@ -11,11 +11,11 @@ const router = express.Router();
 
 
 router.post('/', async (req, res)=>{
-  const {surgeryid, imageid} = req.body;
+   const {surgeryid,imageid} = req.body;
  
   try {
     const fullTarget = await controller.addTarget(surgeryid, imageid);
-    response.success(req, res, fullTarget, 201 )
+    response.success(req, res, req.user, 201 )
   }
   catch (err) {
     response.error(req, res, 'Internal Error', 400, err )
@@ -34,16 +34,17 @@ router.get('/', async (req, res)=>{
 })
 
 router.patch('/:id', async(req, res)=> {
-  console.log(req.body.imageid);
+
   try {
 
-    const updatedTarget = await controller.updateTarget(req.params.id, req.body.imageid);
-    response.success(req, res, req.body.imageid, 200)
+    const updatedTarget = await controller.updateTarget(req.params.id, req.body.image);
+    response.success(req, res, req.body.image)
   } 
   catch (error) {
     response.error(req, res, 'Internal Error',500, error);
   }
 })
+
 
 
 

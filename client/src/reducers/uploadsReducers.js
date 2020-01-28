@@ -32,6 +32,7 @@ export default (state= INITIAL_STATE, action)=>{
         ...state,
         target: action.payload,
       }
+    
     default:
       return state;
   }

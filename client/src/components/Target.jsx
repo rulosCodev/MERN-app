@@ -17,8 +17,11 @@ const Target = (props) => {
     date,
     onDelete,
     addFile,
+    target,
     addTargetUploads,
+    uploadTarget,
     uploadsfiles,
+    files,
     getFiles,
   changeFile} = props;
   const year = date.slice(0,4)
@@ -27,7 +30,6 @@ const Target = (props) => {
   
   const handleChange = (event)=>{
     const file = event.target.files[0];
-    console.log(file)
 
     const newFiles = {
       name: file.name,
@@ -68,28 +70,20 @@ const Target = (props) => {
       default: return month
     }
   }
-  
-
-  const handleSelecFile = (event)=>{
-    console.log(event.target.files[0])
-    setFile(event.target.files[0]);
-    setFileName(event.target.files[0].name)
+  const convertProps = () => {
+    const uploadstopatch = Object.values(uploadsfiles)
+      return uploadstopatch
   }
   const handleSave = async (event) => {
     event.preventDefault();
-    
-    
-    const form = new FormData(event.target)
+
+    const fileValues = Object.values(files)
+    const form = new FormData(event.currentTarget)
     try {
       const response = await addFile(form)
       
+
       
-      // console.log(uploadsfiles.filename)
-      // const newTarget = {
-      //   surgeryid: id,
-      //   imageid: Object.values(uploadsfiles)
-      // }
-      // addTargetUploads(newTarget)
     } catch(error) {
       console.log(error);
       
@@ -150,7 +144,7 @@ const Target = (props) => {
           className='submit'
         />
         </form>
-        <Uploads id={id} uploadsFiles={null}/>
+        <Uploads id={id} />
         {/* <MyImagenes /> */}
       </div>
       <button
