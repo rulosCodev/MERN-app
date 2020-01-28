@@ -4,17 +4,18 @@
   background: linear-gradient(#11aec8,#edeef4);
   color: #fff;
   display: grid;
-  grid-template: 1fr .5fr / 1fr 1fr;
-  grid-template-areas: "logo user"
-                        "nav nav";
-
-  padding: .5em 2em 0em .3em;
+    grid-template-areas:
+        "logo user"
+        "nav nav";
+    padding: 0em 2em 0em .3em;
   &__logoContainer {
 
     grid-area: logo;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+    top: 50%;
     .logo {
       width: 10%;
       transform: rotate(180deg);
@@ -29,6 +30,8 @@
     justify-content: center;
     align-items: flex-end;
     grid-area: user;
+    position: relative;
+    top: 50%;
     p {
       text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
     }

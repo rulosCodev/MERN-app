@@ -14,7 +14,12 @@
   border-radius: 2em;
   overflow-x: hidden;
   padding: 0em 0em 0em 2em;
-
+  a {
+    color: #000;
+  }
+  .viewmore {
+    font-size: 1.3em;
+  }
   &__date {
     grid-area: date;
     color: white;

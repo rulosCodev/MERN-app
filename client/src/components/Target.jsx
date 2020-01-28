@@ -4,7 +4,7 @@ import * as uploadsActions from '../actions/uploadsActions';
 import axios from 'axios';
 import '../assets/styles/components/Target.scss';
 import { array } from 'prop-types';
-
+import { Link } from 'react-router-dom'
 import Myform from './Myform';
 import Uploads from './Uploads';
 const Target = (props) => {
@@ -13,7 +13,7 @@ const Target = (props) => {
     sex,
     age,
     diagnosis,
-    surgery,
+    surgeryprocess,
     date,
     onDelete,
     addFile,
@@ -91,7 +91,7 @@ const Target = (props) => {
     
 
     } 
-
+    
   return (
     <div className='target'>
 
@@ -125,13 +125,20 @@ const Target = (props) => {
           </p>
         </div>
         
-        <div className="info surgery">
+        <div className="info surgeryprocess">
           <p className='label'>Procedimiento: </p>
           <p>
-          {surgery}
+          {surgeryprocess}
           </p>
         </div>
-        <form 
+
+        <Link to={`/cirugias/${id}`}>
+          <i className="viewmore far fa-eye"></i>
+          <br></br>
+          ver detalles
+        </Link>
+
+        {/* <form 
         onSubmit={handleSave}
         // action="http://localhost:4000/upload"
         // method="POST"
@@ -143,8 +150,8 @@ const Target = (props) => {
           value='Upload'
           className='submit'
         />
-        </form>
-        <Uploads id={id} />
+        </form> */}
+        {/* <Uploads id={id} /> */}
         {/* <MyImagenes /> */}
       </div>
       <button
@@ -162,6 +169,6 @@ const Target = (props) => {
     </div>
   );
 };
-const mapStateToProps = ({uploadsReducers}) => uploadsReducers;
+const mapStateToProps = ({surgeryReducers}) => surgeryReducers;
 
 export default connect(mapStateToProps, uploadsActions) (Target);

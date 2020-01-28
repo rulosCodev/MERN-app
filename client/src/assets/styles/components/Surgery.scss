@@ -1,0 +1,75 @@
+@import '../Vars.scss';
+
+.surgery {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    padding: 1em;
+
+  &__info {
+    display: grid;
+    grid-template: 1fr 1fr/ 1fr;
+    width: 80%;
+    margin: 0 auto;
+    .primaryinfo__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .secondinfo__container {
+      padding: 0 1em;
+      margin-top: .5em;
+      display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    }
+    .info.date {
+      grid-area: date;
+      color: white;
+      background: #0197cc;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      border-radius: 0 0 1em;
+      padding: 1em;
+      text-align: center;
+      h1 {
+        text-shadow: 1px 1px  rgba(0, 0, 0, 0.616);
+      }
+    }
+    .info.patient {
+      display: flex;
+      width: 100%;
+    justify-content: space-around;
+    }
+    
+  }
+  
+}
+.surgery--stage {
+  display: grid;
+  grid-template: 8% auto 20% / 1fr;
+  padding: 0 1em;
+  width: 80%;
+  margin: 1em auto 0 auto;
+  .pre--images {
+    padding: .5em;
+    
+  }
+}
+.surgery--stage.pre {
+  margin: none;
+}
+.images--container {
+  border: 1px solid #212121;
+  border-radius: 1em;
+  height: 8em;
+}
+.fileupload {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

@@ -3,24 +3,25 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import reducer from './reducers';
 import reduxThunk from 'redux-thunk';
 
 
 import App from './pages/App';
+import LoadingView from './components/Loadning'
+import { persistor, store } from './store';
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(reducer, {}, composeWithDevTools(
-  applyMiddleware(reduxThunk)
-));
 
 
 const app = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={<LoadingView />} persistor={persistor}>
+       <App />
+    </PersistGate>
   </Provider>
   , app,
 );

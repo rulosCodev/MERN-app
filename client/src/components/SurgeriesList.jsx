@@ -28,10 +28,9 @@ class SurgeriesList extends React.Component {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
     this.props.getSurgeries();
-
   }
+
   handleSubmit(values) {
     console.log(values)
   }
@@ -71,14 +70,17 @@ class SurgeriesList extends React.Component {
     return (
       <div className='surgeriesList'>
         <button className="btn-add" type='button' onClick={this.handleToggleAddModal}>Nueva cirugía</button>
-        { surgeries.map(({_id,sex,age,diagnosis,surgery,date})=>{
+        { surgeries.map((
+          {_id,sex,age,diagnosis,surgeryprocess,date}
+          )=>{
           return(
-            <Target key={_id}
+            <Target 
+              key={_id}
               id={_id}
               sex={sex}
               age={age}
               diagnosis={diagnosis}
-              surgery={surgery}
+              surgeryprocess={surgeryprocess}
               date={date}
               onDelete={this.handleToggleModal}
             />
