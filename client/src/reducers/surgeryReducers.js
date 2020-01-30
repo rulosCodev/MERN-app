@@ -1,5 +1,6 @@
-import {GET_SURGERIES, GET_SURGERY, LOADING_SURGERY, ERROR_SURGERY, DELETE_SURGERY, ADD_SURGERY} from '../types/surgeryTypes';
+import {CHANGE_FILE,GET_SURGERIES, GET_SURGERY, LOADING_SURGERY, ERROR_SURGERY, DELETE_SURGERY, ADD_SURGERY} from '../types/surgeryTypes';
 const INITIAL_STATE = {
+  files:[],
   surgeries: [],
   surgery:'',
   loading: false,
@@ -27,11 +28,15 @@ export default (state= INITIAL_STATE, action)=>{
         loading: false
       };
     case DELETE_SURGERY:
-    return {
-      ...state,
-      surgeries: state.surgeries.filter(surgeries => surgeries._id !== action.payload)
-    };
-   
+      return {
+        ...state,
+        surgeries: state.surgeries.filter(surgeries => surgeries._id !== action.payload)
+      };
+    case CHANGE_FILE:
+      return {
+        ...state,
+        files:[action.payload, ...state.files]
+      }
     case LOADING_SURGERY:
       return {
         ...state,

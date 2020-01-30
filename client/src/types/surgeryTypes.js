@@ -7,6 +7,9 @@ export const DELETE_SURGERY = 'DELETE_SURGERY'
 export const LOADING_SURGERY = 'LOADING_SURGERY'
 export const ERROR_SURGERY = 'ERROR_SURGERY'
 
+export const CHANGE_FILE = 'CHANGE_FILE'
+
+
 
 
 

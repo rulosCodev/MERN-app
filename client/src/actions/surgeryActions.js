@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_SURGERIES,GET_SURGERY, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY, DELETE_SURGERY} from '../types/surgeryTypes';
+import {CHANGE_FILE,GET_SURGERIES,GET_SURGERY, ERROR_SURGERY, LOADING_SURGERY, ADD_SURGERY, DELETE_SURGERY} from '../types/surgeryTypes';
 
 
 
@@ -8,7 +8,7 @@ export const getSurgeries = () => async (dispatch) => {
     type: LOADING_SURGERY
   })
   try {
-    const response = await axios.get('http://localhost:5000/surgery')
+    const response = await axios.get('https://neurotraking-api.now.sh/surgery')
     dispatch({
       type: GET_SURGERIES,
       payload: response.data.body
@@ -28,7 +28,7 @@ export const getSurgery = (id) => async (dispatch) => {
     type: LOADING_SURGERY
   })
   try {
-    const response = await axios.get(`http://localhost:5000/surgery/${id}`)
+    const response = await axios.get(`https://neurotraking-api.now.sh/surgery/${id}`)
     dispatch({
       type: GET_SURGERY,
       payload: response.data.body
@@ -45,10 +45,10 @@ export const getSurgery = (id) => async (dispatch) => {
 };
 
 export const addSurgery = (surgery) => async(dispatch) => {
-  const response = await axios.post('http://localhost:5000/surgery', surgery)
+  const response = await axios.post('https://neurotraking-api.now.sh/surgery', surgery)
   const newtarget = response.data.body
   console.log(newtarget)
-  const response2 = await axios.post('http://localhost:5000/target', {
+  const response2 = await axios.post('https://neurotraking-api.now.sh/target', {
     surgeryid: newtarget._id,
     imageid: []
   })
@@ -58,6 +58,12 @@ export const addSurgery = (surgery) => async(dispatch) => {
   })
 };
 
+export const changeFile = (file) => (dispatch) => {
+  dispatch({
+    type: CHANGE_INPUT,
+    payload: file
+  })
+}
 // export const getSurgeries = () => dispatch => {
 //   dispatch(setSurgeriesLoading());
 //   axios
@@ -71,7 +77,7 @@ export const addSurgery = (surgery) => async(dispatch) => {
 // }
 
 export const deleteSurgery = (id) => (dispatch)  => {
-  axios.delete(`http://localhost:5000/surgery/${id}`)
+  axios.delete(`https://neurotraking-api.now.sh/surgery/${id}`)
   dispatch({
     type: DELETE_SURGERY,
     payload: id

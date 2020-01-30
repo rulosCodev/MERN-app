@@ -10,8 +10,13 @@ class Uploads extends React.Component {
     
 
     this.writeMonth = this.writeMonth.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
+    this.handleFileSubmit = this.handleFileSubmit.bind(this);
+
+
 
   };
+  
   
   componentDidMount() {
     this.props.getSurgery(this.props.match.params.id)
@@ -44,6 +49,13 @@ class Uploads extends React.Component {
         return 'Diciembre'
       default: return month
     }
+  }
+  handleFileChange() {
+    console.log('change')
+  }
+  handleFileSubmit(event) {
+    event.preventDefault();
+    console.log('submited')
   }
   
   render() {
@@ -113,8 +125,12 @@ class Uploads extends React.Component {
             </div>
 
             <div className="fileupload">
-              <input type="file" />
+            <form onSubmit={this.handleFileSubmit}>
+
+              <input type="file" name="file" id="file" onChange={this.handleFileChange} />
               <input type="submit" />
+
+        </form>
             </div>
 
           </div>
