@@ -38,6 +38,7 @@ const handleSubmit = (event) => {
     age: state.age,
     diagnosis: state.diagnosis,
     surgery: state.surgery
+    
   }
 
   //add item via addItem action

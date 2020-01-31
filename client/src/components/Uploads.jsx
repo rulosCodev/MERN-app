@@ -2,6 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux';
 import * as surgeryActions from '../actions/surgeryActions';
+import * as uploadsActions from '../actions/uploadsActions';
 import '../assets/styles/components/Surgery.scss';
 
 class Uploads extends React.Component {
@@ -50,19 +51,48 @@ class Uploads extends React.Component {
       default: return month
     }
   }
-  handleFileChange() {
-    console.log('change')
+  handleFileChange(event) {
+    const file = event.target.files[0];
+
+    const newFiles = {
+      name: file.name,
+      lastModified: file.lastModified,
+      lastModifiedDate: file.lastModifiedDate,
+      webkitRelativePath: file.webkitRelativePath,
+      size: file.size,
+      type: file.type
+    }
+    console.log(this.props)
+    this.props.changeFile(newFiles)
+
   }
-  handleFileSubmit(event) {
+  async handleFileSubmit(event) {
     event.preventDefault();
-    console.log('submited')
+    const form = new FormData(event.currentTarget)
+
+    try {
+      const response = await this.props.addFile(form)
+      const newImage = {
+        id: response.id,
+        filename: response.filename
+      }
+      
+      const updatedSurgery = await this.props.updateSurgery(this.props.match.params.id,newImage)
+
+      
+    } catch(error) {
+      console.log(error);
+      
+    }
+    
   }
   
   render() {
-    const year = this.props.surgery.date.slice(0,4)
-    const month = this.props.surgery.date.slice(5,7)
-    const day = this.props.surgery.date.slice(8,10)
-    const {sex, age, diagnosis, surgeryprocess} = this.props.surgery
+    // const year = this.props.surgery.date.slice(0,4)
+    // const month = this.props.surgery.date.slice(5,7)
+    // const day = this.props.surgery.date.slice(8,10)
+    const {sex, age, diagnosis, surgeryprocess, date} = this.props.surgery
+    console.log('nuevo render')
     return(
       <div className="surgery">
 
@@ -72,9 +102,18 @@ class Uploads extends React.Component {
 
           <div className="primaryinfo__container">
             <div className='info date'>
-              <h2>{this.writeMonth(month)}</h2>
-              <h1>{day}</h1>
-              <h2>{year}</h2>
+              <h2>
+                {date ? `${this.writeMonth(date.slice(5,7))}` : 'no date'}
+              {/* {this.writeMonth(date.slice(5,7))} */}
+              </h2>
+              <h1>
+              { date ? `${date.slice(8,10)}` : 'no date'}
+              </h1>
+              <h2>
+              { date ? `${date.slice(0,4)}` : 'no date'}
+
+              {/* {date.slice(0,4)} */}
+              </h2>
             </div>
             
             <div className='info patient'>
@@ -121,7 +160,15 @@ class Uploads extends React.Component {
             </div>
 
             <div className="pre--images">
-              <div className="images--container"></div>
+              <div className="images--container">
+                { this.props.surgery.preimages ? this.props.surgery.preimages.map(({id, filename})=> {
+                  return(
+                    <div className="uplodedImage--container" key={id}>
+                      <img className="uplodedImage" src={`http://localhost:5000/uploads/show/${filename}`} alt={id} />
+                    </div>
+                  )
+                }) : 'no hay imagenes' }
+              </div>
             </div>
 
             <div className="fileupload">
@@ -169,5 +216,9 @@ class Uploads extends React.Component {
   }
 }
 const mapStateToProps = ({surgeryReducers}) => surgeryReducers
-export default connect(mapStateToProps, surgeryActions) (Uploads);
+const mapDispatchToProps = {
+  ...surgeryActions,
+  ...uploadsActions
+}
+export default connect(mapStateToProps, mapDispatchToProps) (Uploads);
 

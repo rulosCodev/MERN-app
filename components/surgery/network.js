@@ -49,6 +49,18 @@ router.delete('/:id', async(req, res)=>{
     response.error(req, res, 'Internal Error',500, error);
   }
 })
+
+router.patch('/pre/:id', async(req, res)=> {
+
+  try {
+
+    const updatedSurgery = await controller.updateSurgery(req.params.id, req.body.image);
+    response.success(req, res, updatedSurgery)
+  } 
+  catch (error) {
+    response.error(req, res, 'Internal Error',500, error);
+  }
+})
 // router.delete('/:id', async(req, res)=>{
 //   try {
 //     await controller.deleteItem(req.params.id);

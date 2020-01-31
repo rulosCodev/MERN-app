@@ -12,10 +12,7 @@ function addSurgery(sex, age, diagnosis, surgeryprocess) {
     age,
     diagnosis,
     surgeryprocess,
-    pre: {
-      images: [],
-      observation: ''
-    },
+    preimages:[] ,
     intra: {
       images: [],
       observation: ''
@@ -49,8 +46,19 @@ function deleteSurgery(id) {
   })
 }
 
+function updateSurgery(id, image) {
+  return new Promise(async (resolve, reject)=>{
+    if(!id || !image){
+      return reject('Invalid data');
+    }
+    const result= await store.update(id, image);
+    resolve(result)
+  })
+}
+
 module.exports = {
   addSurgery,
   getSurgeries,
   deleteSurgery,
+  updateSurgery
 }

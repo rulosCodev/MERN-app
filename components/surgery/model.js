@@ -25,9 +25,9 @@ const surgerySchema = new Schema({
     required: true
   },
 
-  pre: {
-    type: Object,
-    require: false
+  preimages: {
+    type: Array,
+    require: false,
   },
 
   intra: {

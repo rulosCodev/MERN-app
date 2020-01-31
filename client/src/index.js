@@ -19,9 +19,7 @@ const app = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={<LoadingView />} persistor={persistor}>
        <App />
-    </PersistGate>
   </Provider>
   , app,
 );

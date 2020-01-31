@@ -25,11 +25,22 @@ async function removeSurgery(id){
     _id: id
   })
 }
+async function updatesurgery(id, image) {
+  const foundSurgery = await Model.findOne({
+    _id: id
+  });
+  foundSurgery.preimages = [image, ...foundSurgery.preimages];
+  const newSurgery = await foundSurgery.save();
+  console.log(newSurgery)
+
+  return newSurgery;
+}
 
 
 module.exports = {
   list: getSurgeries,
   add: addSurgery,
   remove: removeSurgery,
+  update: updatesurgery
 
 }

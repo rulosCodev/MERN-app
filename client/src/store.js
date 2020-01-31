@@ -23,7 +23,7 @@ const persistConfig = {
  
  const pReducer = persistReducer(persistConfig, rootReducer);
  
- export const store = createStore(pReducer, initialState, composeWithDevTools(
+ export const store = createStore(rootReducer, initialState, composeWithDevTools(
   applyMiddleware(reduxThunk)
 ));
 

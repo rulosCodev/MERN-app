@@ -19,11 +19,11 @@ export const addFile = (newFile) =>  async (dispatch) => {
   try {
     const id = newFile.get('targetid');
     const response = await axios.post('http://localhost:5000/uploads', newFile, config)
-    // dispatch({
-    //   type: ADD_FILE,
-    //   payload: response.data.body
-    // })
-    return response.data
+    dispatch({
+      type: ADD_FILE,
+      payload: response.data.body
+    })
+    return response.data.body
   } catch (error) {
     console.log(error);
   }
