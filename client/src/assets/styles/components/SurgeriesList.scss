@@ -1,2 +1,20 @@
 @import '../Vars.scss';
 
+.surgeriesList {
+  background: #edeef4;
+  width: 90%;
+  margin: 0em auto 2em auto ;
+  .btn-add {
+    margin-top: 1em;
+    padding: 1em;
+    outline: none;
+    border-radius: 2em;
+    border: none;
+    background: #8ac149;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.432)  ;
+    ;
+    
+  }
+}

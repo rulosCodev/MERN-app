@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
+import React from 'react';
 
-import Target from './Target';
 import { connect } from 'react-redux';
+import Target from './Target';
 
-import { getSurgeries, deleteSurgery } from '../../actions/surgeryActions';
-import PropTypes from "prop-types";
+import * as surgeryActions from '../actions/surgeryActions';
 import DeleteSurgeryModal from './DeleteSurgeryModal';
 
 import '../assets/styles/components/SurgeriesList.scss';
 import AddSurgeryModal from './AddSurgeryModal';
-
+// import reducer from '../reducers/surgeryReducers';
+import MyForm from './Myform';
 class SurgeriesList extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,16 +19,20 @@ class SurgeriesList extends React.Component {
       addModalIsOpen: false,
       deleteTargetId: ''
     }
-    this.handleToggleModal = this.handleToggleModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
-    this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
+  this.handleToggleModal = this.handleToggleModal.bind(this);
+  this.handleCloseModal = this.handleCloseModal.bind(this);
+  this.handlleDeleteSurgery = this.handlleDeleteSurgery.bind(this);
+  this.handleToggleAddModal = this.handleToggleAddModal.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+
   }
- 
 
   componentDidMount() {
-    this.props.getSurgeries() 
-   
+    this.props.getSurgeries();
+  }
+
+  handleSubmit(values) {
+    console.log(values)
   }
 
   handleCloseModal(e) {
@@ -54,64 +58,62 @@ class SurgeriesList extends React.Component {
   }
 
   handlleDeleteSurgery(id) {
-    this.handleToggleModal(id)
     this.props.deleteSurgery(id)
+    this.handleToggleModal(id)
   }
- 
-  render() {
-    const surgeries = this.props.surgeries
-    // console.log(this.props.surgeries)
-    return(
-      <div className="surgeriesList">
-      <button onClick={this.handleToggleAddModal}>Nueva cirugía</button>
-      { surgeries.map(({_id, sex, age, diagnosis, surgery, date})=>{
-        return(
 
-        <Target 
-          key={_id}
-          id={_id}
-          sex={sex}
-          age={age}
-          diagnosis={diagnosis}
-          surgery={surgery}
-          date={date}
-          onDelete={this.handleToggleModal}
-        />
-        )
-      })}
-      <AddSurgeryModal 
+
+  
+  render() {
+    const { surgeries } = this.props;
+    // console.log(this.props.surgeries)
+    return (
+      <div className='surgeriesList'>
+        <button className="btn-add" type='button' onClick={this.handleToggleAddModal}>Nueva cirugía</button>
+        { surgeries.map((
+          {_id,sex,age,diagnosis,surgeryprocess,date}
+          )=>{
+          return(
+            <Target 
+              key={_id}
+              id={_id}
+              sex={sex}
+              age={age}
+              diagnosis={diagnosis}
+              surgeryprocess={surgeryprocess}
+              date={date}
+              onDelete={this.handleToggleModal}
+            />
+          )
+        })}
+        <AddSurgeryModal
         onClose={this.handleToggleAddModal}
         isOpen={this.state.addModalIsOpen}
-
       />
-      <DeleteSurgeryModal  
-        surgeryId={this.state.deleteTargetId} 
+      <DeleteSurgeryModal
+        surgeryId={this.state.deleteTargetId}
         onClose={this.handleToggleModal}
-        onDelete={this.handlleDeleteSurgery} 
-        onToggle={this.handleToggleModal} 
+        onDelete={this.handlleDeleteSurgery}
+        onToggle={this.handleToggleModal}
         isOpen={this.state.deleteModalIsOpen}
       />
       </div>
-    )
+    );
 
   }
 }
 
+// SurgeriesList.propTypes = {
+//   getSurgeries: PropTypes.func.isRequired,
+//   // surgeries: PropTypes.object.isRequired,
+// };
 
-SurgeriesList.propTypes = {
-  getSurgeries: PropTypes.func.isRequired,
-  // surgeries: PropTypes.object.isRequired,
+const mapStateToProps = (reducers) => {
+  return reducers.surgeryReducers;
 };
+// const mapDispatchToProps = {
+//   getSurgeries,
+//   // deleteSurgery,
+// };
 
-const mapStateToProps = (state) => {
-  return {
-    surgeries: state.surgery.surgeries
-    
-  };
-};
-const mapDispatchToProps = {
-  getSurgeries,
-  deleteSurgery,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (SurgeriesList);
+export default connect(mapStateToProps, surgeryActions)(SurgeriesList);

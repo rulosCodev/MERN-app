@@ -1,20 +1,24 @@
 import React from 'react';
+import { BrowserRouter, Route} from 'react-router-dom'
 import '../assets/styles/App.scss';
 import Header from '../components/Header';
 import Main from '../components/Main';
-import { Provider } from 'react-redux';
-import store from '../../store';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/styles/App.scss';
+import SurgeriesList from '../components/SurgeriesList';
+import Uploads from '../components/Uploads';
 
-function App({ user }) {
+function App() {
 
   return (
-    <Provider store={store}>
-      <div>
-        <Header />
-        <Main />
-      </div>
-    </Provider>
+      <BrowserRouter>
+        <div className="appContainer">
+          <Header />
+          <Route exact path='/' component={SurgeriesList} />
+          <Route exact path='/cirugias/:id' component={Uploads} />
+
+        </div>
+
+      </BrowserRouter>
   );
 }
 

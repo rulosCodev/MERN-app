@@ -1,7 +1,6 @@
 @import '../Vars.scss';
-
+@import '../breakpoints';
 .target {
-  font-family: 'Roboto', sans-serif;
   width: 100%;
   margin: 0 auto;
   margin-top: 2em;
@@ -15,30 +14,52 @@
   border-radius: 2em;
   overflow-x: hidden;
   padding: 0em 0em 0em 2em;
+  a {
+    color: #000;
+  }
+  .viewmore {
+    font-size: 1.3em;
+  }
   &__date {
     grid-area: date;
     color: white;
     background: #0197cc;
-    font-family: 'Archivo Black', sans-serif; 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    font-size: .7em;
+    h1 {
+      text-shadow: 1px 1px  rgba(0, 0, 0, 0.616);
+    }
 
   }
   &__info {
-    grid-area: info;
-    ;
-    .sex {
-      justify-content: flex-start;
-    }
+    padding: .5em;
+    display: grid;
+    grid-template: repeat(3, 1fr)/ 1fr 1fr;
+    grid-template-areas: "sex age"
+                          "diagnosis diagnosis"
+                          "surgery surgery";
+    .info.sex {
+      grid-area: sex;
+    }    
+    .info.age {
+      grid-area: age;
+    }  
+    .info.diagnosis {
+      grid-area: diagnosis;
+    } 
+    .info.surgery {
+      grid-area: surgery;
+    }                     
   }
 }
-.label, .data--info {
-  margin: 0;
-} 
+
 .label {
-  font-family: 'Archivo Black', sans-serif; 
-  color: #11aec8;
+  font-weight: 700;
+  color: #005A7A;
   letter-spacing: .07em;
   font-size: large;
 }
@@ -62,10 +83,8 @@
   color: white
 }
 
-.primary--info {
-  display : grid;
-  grid-template: 1fr / 70% 30%;
-  ;
- 
-}
+
+
+
+
 

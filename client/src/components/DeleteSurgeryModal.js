@@ -1,27 +1,26 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
-import '../assets/styles/components/Modal.scss';
+import '../assets/styles/components/DeleteSurgeryModal.scss';
 import Modal from './Modal';
 
 
 function DeleteSurgeryModal (props) {
  const { onDelete, onClose, surgeryId, onToggle, isOpen} = props;
+ console.log(surgeryId)
  return(
    <Modal isOpen={isOpen} onClose={onClose}>
     <div>
       <h1>Estas seguro ?</h1>
       <p>Estas apunto de eliminar esta cirugía</p>
 
-      <div>
-        <button onClick={()=> {
+      <div className="btnContainer">
+        <button className="btnDelete" onClick={()=> {
           onDelete(surgeryId)
           }}
-          className="btn btn-danger"
          >Delete
          </button>
         <button 
+          className="btnCancel"
           onClick={()=>{onToggle(surgeryId)}} 
-          className="btn btn-primary"
         >Cancel
         </button>
       </div>

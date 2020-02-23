@@ -1,0 +1,18 @@
+
+export const ADD_SURGERY = 'ADD_SURGERY';
+export const GET_SURGERIES = 'GET_SURGERIES'
+export const GET_SURGERY = 'GET_SURGERY'
+
+export const DELETE_SURGERY = 'DELETE_SURGERY'
+export const LOADING_SURGERY = 'LOADING_SURGERY'
+export const ERROR_SURGERY = 'ERROR_SURGERY'
+export const UPDATE_SURGERY = 'UPDATE_SURGERY'
+
+
+export const CHANGE_FILE = 'CHANGE_FILE'
+
+
+
+
+
+

@@ -3,22 +3,31 @@ const store = require('./store');
 
 
 
-function addSurgery(sex, age, diagnosis, surgery) {
-  if(!sex || !age || !diagnosis || !surgery) {
+function addSurgery(sex, age, diagnosis, surgeryprocess) {
+  if(!sex || !age || !diagnosis || !surgeryprocess) {
     return Promise.reject('Invalid data');
   }
   const fullSurgery = {
     sex,
     age,
     diagnosis,
-    surgery,
+    surgeryprocess,
+    preimages:[] ,
+    intra: {
+      images: [],
+      observation: ''
+    },
+    post: {
+      images: [],
+      observation: ''
+    }
   };
 
   return store.add(fullSurgery)
 }
 
-function getSurgeries() {
-  return store.list()
+function getSurgeries(surgeryid) {
+  return store.list(surgeryid)
 }
 
 function deleteSurgery(id) {
@@ -37,8 +46,19 @@ function deleteSurgery(id) {
   })
 }
 
+function updateSurgery(id, image) {
+  return new Promise(async (resolve, reject)=>{
+    if(!id || !image){
+      return reject('Invalid data');
+    }
+    const result= await store.update(id, image);
+    resolve(result)
+  })
+}
+
 module.exports = {
   addSurgery,
   getSurgeries,
   deleteSurgery,
+  updateSurgery
 }

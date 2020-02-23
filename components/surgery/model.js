@@ -20,9 +20,24 @@ const surgerySchema = new Schema({
     required: true
   },
 
-  surgery: {
+  surgeryprocess: {
     type: String,
     required: true
+  },
+
+  preimages: {
+    type: Array,
+    require: false,
+  },
+
+  intra: {
+    type: Object,
+    require: false
+  },
+
+  post: {
+    type: Object,
+    require: false
   },
 
   date: {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import '../assets/styles/components/Modal.scss';
+import '../assets/styles/components/AddSurgeryModal.scss';
 import { connect } from 'react-redux';
-import { addSurgery } from '../../actions/surgeryActions';
+import { addSurgery } from '../actions/surgeryActions';
 
 import Modal from './Modal';
 
@@ -38,6 +38,7 @@ const handleSubmit = (event) => {
     age: state.age,
     diagnosis: state.diagnosis,
     surgery: state.surgery
+    
   }
 
   //add item via addItem action
@@ -51,9 +52,11 @@ const handleSubmit = (event) => {
  const { onDelete, onClose, surgeryId, onToggle, isOpen} = props;
  return(
    <Modal isOpen={props.isOpen} onClose={props.onClose}>
-    <div>
+    <div className="addModal">
       <form onSubmit={handleSubmit}>
+        <h2>Crear nueva cirugía</h2>
         <input 
+          className="formInput"
           type="text"
           name="sex"
           id="sex"
@@ -61,27 +64,46 @@ const handleSubmit = (event) => {
           onChange={handleChange}
         />
         <input 
+          className="formInput"
+
           type="number"
           name="age"
           id="age"
           placeholder="Edad en numeros" 
           onChange={handleChange}
         />
-        <input 
+        <textarea 
+          className="formInput"
+
+          name="diagnosis"
+          id="diagnosis" 
+          cols="30" 
+          rows="5" 
+          placeholder="Diagnostico"
+          onChange={handleChange}>
+
+          </textarea>
+        {/* <input 
           type="text"
           name="diagnosis"
           id="diagnosis"
           placeholder="Diagnostico" 
           onChange={handleChange}
-        />
-        <input 
-          type="text"
+        /> */}
+        <textarea 
+          className="formInput"
+
           name="surgery"
-          id="surgery"
+          id="surgery" 
+          cols="30" 
+          rows="5" 
           placeholder="Procedimiento" 
-          onChange={handleChange}
-        />
-        <button type="submit">submit</button>
+
+          onChange={handleChange}>
+
+          </textarea>
+        
+        <button id="btnSubmit" type="submit">Crear</button>
       </form>
     </div>
    </Modal>

@@ -1,59 +1,158 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import * as uploadsActions from '../actions/uploadsActions';
+import axios from 'axios';
 import '../assets/styles/components/Target.scss';
+import { array } from 'prop-types';
+import { Link } from 'react-router-dom'
+import Myform from './Myform';
+import Uploads from './Uploads';
+const Target = (props) => {
 
+  const{  id,
+    sex,
+    age,
+    diagnosis,
+    surgeryprocess,
+    date,
+    onDelete,
+    addFile,
+    target,
+    addTargetUploads,
+    uploadTarget,
+    uploadsfiles,
+    files,
+    getFiles,
+  changeFile} = props;
+  const year = date.slice(0,4)
+  const month = date.slice(5,7)
+  const day = date.slice(8,10)
+  
+  const handleChange = (event)=>{
+    const file = event.target.files[0];
 
-const Target = ({
-   id,
-   sex,
-   age,
-   diagnosis,
-   surgery,
-   date,
-   onDelete,
-   deleteItem
-  }) => {
+    const newFiles = {
+      name: file.name,
+      lastModified: file.lastModified,
+      lastModifiedDate: file.lastModifiedDate,
+      webkitRelativePath: file.webkitRelativePath,
+      size: file.size,
+      type: file.type
+    }
+    changeFile(newFiles)
+  }
+  const writeMonth=(month)=>{
+    switch(month){
+      case '01' :
+        return 'Enero'
+      case '02' :
+        return 'Febrero'
+      case '03' :
+        return 'Marzo'
+      case '04' :
+        return 'Abril'
+      case '05' :
+        return 'Mayo'
+      case '06' :
+        return 'Junio'
+      case '07' :
+        return 'Julio'
+      case '08' :
+        return 'Agosto'
+      case '09' :
+        return 'Septiembre'
+      case '10' :
+        return 'Octubre'
+      case '11' :
+        return 'Noviembre'
+      case '12' :
+        return 'Diciembre'
+      default: return month
+    }
+  }
+  const convertProps = () => {
+    const uploadstopatch = Object.values(uploadsfiles)
+      return uploadstopatch
+  }
+  const handleSave = async (event) => {
+    event.preventDefault();
 
- 
+    const fileValues = Object.values(files)
+    const form = new FormData(event.currentTarget)
+    try {
+      const response = await addFile(form)
+      
+
+      
+    } catch(error) {
+      console.log(error);
+      
+    }
+    
+
+    } 
+    
   return (
     <div className='target'>
 
       <div className='target__date'>
-        <h4>{date}</h4>
+        <h2>{writeMonth(month)}</h2>
+        <h1>{day}</h1>
+        <h2>{year}</h2>
         
       </div>
 
       <div className='target__info'>
 
+        <div className="info sex">
+          <p className='label'>Sexo: </p>
+          <p className="data--info">
+          {sex}
+          </p>
+        </div>
         
-
-        <div className="primary--info">
-          <div className="flex sex">
-            <p className='label'>Sexo: </p>
-            <p className="data--info">
-            {sex}
-            </p>
-          </div>
-          
-          <div className="flex">
-            <p className='label'>Edad: </p>
-            <p className="data--info">
-            {`${age} años`}
-            </p>
-          </div>
+        <div className="info age">
+          <p className='label'>Edad: </p>
+          <p className="data--info">
+          {`${age} años`}
+          </p>
         </div>
 
-        <div className="secondary--info">
+        <div className="info diagnosis">
           <p className='label'>Diagnostigo: </p>
           <p>
           {diagnosis}
           </p>
-          
-          <p className='label'>Procedimiento: </p>
-          <p>
-          {surgery}
-          </p>
         </div>
         
+        <div className="info surgeryprocess">
+          <p className='label'>Procedimiento: </p>
+          <p>
+          {surgeryprocess}
+          </p>
+        </div>
+
+        <Link to={`/cirugias/${id}`}>
+          <i className="viewmore far fa-eye"></i>
+          <br></br>
+          ver detalles
+        </Link>
+
+        {/* <form 
+        onSubmit={handleSave}
+        // action="http://localhost:4000/upload"
+        // method="POST"
+        // enctype="multipart/form-data"
+        >
+          <input  onChange={handleChange} type="file" name="file" id="file" />
+          <input
+          type='submit'
+          value='Upload'
+          className='submit'
+        />
+        </form> */}
+        {/* <Uploads id={id} /> */}
+        {/* <MyImagenes /> */}
       </div>
       <button
         className="btn_delete"
@@ -70,6 +169,6 @@ const Target = ({
     </div>
   );
 };
+const mapStateToProps = ({surgeryReducers}) => surgeryReducers;
 
-
-export default Target;
+export default connect(mapStateToProps, uploadsActions) (Target);

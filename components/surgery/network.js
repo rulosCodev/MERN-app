@@ -10,7 +10,17 @@ const router = express.Router();
 
 router.get('/', async (req, res)=>{
   try {
-    const surgeriesList = await controller.getSurgeries();
+    const surgeriesList = await controller.getSurgeries(req.params.sugeryid);
+    response.success(req, res, surgeriesList, 200)
+  }
+  catch(err) {
+    response.error(req,res, 'Internal error', err)
+  }
+})
+
+router.get('/:sugeryid', async (req, res)=>{
+  try {
+    const surgeriesList = await controller.getSurgeries(req.params.sugeryid);
     response.success(req, res, surgeriesList, 200)
   }
   catch(err) {
@@ -35,6 +45,18 @@ router.delete('/:id', async(req, res)=>{
     response.success(req, res, `Surgery: ${req.params.id} deleted`, 200);
   }
   
+  catch (error) {
+    response.error(req, res, 'Internal Error',500, error);
+  }
+})
+
+router.patch('/pre/:id', async(req, res)=> {
+
+  try {
+
+    const updatedSurgery = await controller.updateSurgery(req.params.id, req.body.image);
+    response.success(req, res, updatedSurgery)
+  } 
   catch (error) {
     response.error(req, res, 'Internal Error',500, error);
   }
