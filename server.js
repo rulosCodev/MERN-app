@@ -35,21 +35,7 @@ db(config.dbUri);
 // Routes
 router(app);
 
-<<<<<<< HEAD
-//Serve static assets if in production
-
-if (process.env.NODE_ENV === 'production') {
-  //set static folder
-  app.use(express.static('client/dist'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
-  })
-}
-
-=======
 // server listen
->>>>>>> 579779df07b158f2cd7b15cca172642b6e8b4fb7
 const port = config.port;
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`);
